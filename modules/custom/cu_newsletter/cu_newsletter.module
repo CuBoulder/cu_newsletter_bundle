@@ -1,0 +1,244 @@
+<?php
+/**
+ * @file
+ * Code for the Newsletter feature.
+ */
+
+include_once 'cu_newsletter.features.inc';
+
+
+/**
+* Implements hook_menu_alter().
+*/
+function cu_newsletter_menu_alter(&$items) {
+  $items['node/%node/email']['theme callback'] = 'cu_newsletter_email_node_theme';
+  $items['node/%node/email']['theme arguments'] = array(1);
+  $items['node/%node/email']['access arguments'] = array('edit any newsletter content');
+}
+
+
+/**
+* For editing page nodes, uses the 'some_other_theme' theme.
+*/
+function cu_newsletter_email_node_theme($node) {
+  $default_theme = variable_get('theme_default','');
+  return $node->type == 'newsletter' ? 'emailnewsletter' : $default_theme;
+}
+
+/**
+* Implements hook_custom_theme().
+*/
+function mymodule_custom_theme() {
+  if ((arg(0) == 'node') && (arg(2) == 'email')) {
+    return 'emailnewsletter';
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ * Add newsletter css
+ */
+function cu_newsletter_page_alter(&$page) {
+  drupal_add_css(drupal_get_path('module', 'cu_newsletter') . '/css/cu-newsletter.css');
+}
+
+/**
+ * Implements module_preprocess_hook().
+ */
+function cu_newsletter_preprocess_node(&$vars) {
+
+}
+
+
+/**
+ * Implements module_preprocess_hook().
+ * Build article sections.
+ */
+function cu_newsletter_preprocess_entity(&$vars) {
+
+  $entity_type = $vars['elements']['#entity_type'];
+  $bundle = $vars['elements']['#bundle'];
+  // Only process newsletter sections
+  if ($entity_type == 'field_collection_item' && $bundle == 'field_newsletter_section') {
+    $view_mode = $vars['content']['field_newsletter_display'][0]['#markup'];
+    $nids = array();
+    foreach ($vars['content']['field_newsletter_articles']['#items'] as $key => $value) {
+      $nids[$key] = $value['target_id'];
+    }
+    $nodes = node_load_multiple($nids);
+    $vars['content']['articles'] = node_view_multiple($nodes, $view_mode);
+    $vars['content']['articles']['#weight'] = 1;
+    unset($vars['content']['field_newsletter_display']);
+    unset($vars['content']['field_newsletter_articles']);
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function cu_newsletter_theme_registry_alter(&$theme_registry) {
+  $module_path = drupal_get_path('module', 'cu_newsletter');
+  $theme_registry_copy = $theme_registry;
+  _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'field_collection', $module_path);
+  $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+  $hooks = array('node');
+  foreach ($hooks as $h) {
+    if (isset($theme_registry[$h]['theme paths'])) {
+      $first_element = array_shift($theme_registry[$h]['theme paths']);
+      array_unshift($theme_registry[$h]['theme paths'], array_shift($theme_registry[$h]['theme paths']), $module_path);
+    }
+  }
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+
+function cu_newsletter_image_default_styles() {
+  $styles = array();
+
+  $styles['email_feature_thumbnail'] = array(
+    'name' => 'email_feature_thumbnail',
+    'label' => 'email_feature_thumbnail',
+    'effects' => array(
+      10 => array(
+        'label' => 'Focal Point Scale And Crop',
+        'help' => 'Scale and crop based on data provided by <em>Focal Point</em>.',
+        'effect callback' => 'focal_point_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'focal_point',
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 580,
+          'height' => 270,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  $styles['email_feature_thumbnail_large'] = array(
+    'name' => 'email_feature_thumbnail_large',
+    'label' => 'email_feature_thumbnail_large',
+    'effects' => array(
+      10 => array(
+        'label' => 'Focal Point Scale And Crop',
+        'help' => 'Scale and crop based on data provided by <em>Focal Point</em>.',
+        'effect callback' => 'focal_point_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'focal_point',
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 960,
+          'height' => 480,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  $styles['email_teaser_thumbnail'] = array(
+    'name' => 'email_teaser_thumbnail',
+    'label' => 'email_teaser_thumbnail',
+    'effects' => array(
+      10 => array(
+        'label' => 'Focal Point Scale And Crop',
+        'help' => 'Scale and crop based on data provided by <em>Focal Point</em>.',
+        'effect callback' => 'focal_point_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'focal_point',
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 160,
+          'height' => 160,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  $styles['email_ad'] = array(
+    'name' => 'email_ad',
+    'label' => 'email_ad',
+    'effects' => array(
+      10 => array(
+        'label' => 'Focal Point Scale And Crop',
+        'help' => 'Scale and crop based on data provided by <em>Focal Point</em>.',
+        'effect callback' => 'focal_point_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'focal_point',
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 580,
+          'height' => 240,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
+ * Implements hook_node_update().
+ * Publish all referenced nodes.
+ */
+function cu_newsletter_node_insert($node) {
+  _cu_newsletter_publish_nodes($node);
+}
+
+/**
+ * Implements hook_node_update().
+ * Publish all referenced nodes.
+ */
+function cu_newsletter_node_update($node) {
+  _cu_newsletter_publish_nodes($node);
+}
+
+/**
+ * Publish all referenced nodes.
+ */
+function _cu_newsletter_publish_nodes($node) {
+  if (($node->type == 'newsletter') && ($node->status == 1)) {
+    $status = $node->status;
+    $nids = array();
+    foreach ($node->field_newsletter_section[LANGUAGE_NONE] as $item) {
+      $item = entity_load('field_collection_item', array($item['value']));
+      $item = current($item);
+      foreach ($item->field_newsletter_articles[LANGUAGE_NONE] as $article) {
+        $nids[] = $article['target_id'];
+      }
+    }
+    foreach ($nids as $nid) {
+      $node_reference = node_load($nid);
+      if ($node_reference->status == 0) {
+        $node_reference->status = 1;
+        node_save($node_reference);
+        $message = t('%title is now published',
+          array(
+            '%title' => $node_reference->title,
+          )
+        );
+        drupal_set_message($message);
+      }
+    }
+  }
+}
+/**
+ * Allowed values function for field_newsletter_display.
+ */
+function _cu_newsletter_display_values() {
+  return array(
+    'email_teaser' => 'Teaser',
+    'email_feature' => 'Feature',
+  );
+}

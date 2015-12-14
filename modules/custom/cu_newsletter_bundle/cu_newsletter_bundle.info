@@ -1,0 +1,16 @@
+name = "Cu Newsletter Bundle"
+core = 7.x
+package = Features
+dependencies[] = ctools
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = field_collection
+dependencies[] = field_group
+dependencies[] = image
+dependencies[] = link
+dependencies[] = list
+dependencies[] = options
+dependencies[] = smart_trim
+dependencies[] = strongarm
+dependencies[] = text
+dependencies[] = cu_newsletter

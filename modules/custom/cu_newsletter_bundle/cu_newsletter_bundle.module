@@ -1,0 +1,44 @@
+<?php
+/**
+ * @file
+ * Code for the Newsletter bundle.
+ */
+
+/**
+ * Implements hook_secure_permissions().
+ */
+function cu_newsletter_bundle_secure_permissions($role) {
+   $permissions = array(
+    'administrator' => array(
+      'create blog_post content',
+      'delete any blog_post content',
+      'delete own blog_post content',
+      'edit any blog_post content',
+      'edit own blog_post content',
+    ),
+    'content_editor' => array(
+      'create blog_post content',
+      'delete any blog_post content',
+      'delete own blog_post content',
+      'edit any blog_post content',
+      'edit own blog_post content',
+    ),
+    'developer' => array(
+      'create blog_post content',
+      'delete any blog_post content',
+      'delete own blog_post content',
+      'edit any blog_post content',
+      'edit own blog_post content',
+    ),
+    'site_owner' => array(
+      'create blog_post content',
+      'delete any blog_post content',
+      'delete own blog_post content',
+      'edit any blog_post content',
+      'edit own blog_post content',
+    ),
+  );
+  if (isset($permissions[$role])) {
+    return $permissions[$role];
+  }
+}
