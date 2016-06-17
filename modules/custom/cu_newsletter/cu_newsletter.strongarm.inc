@@ -13,6 +13,27 @@ function cu_newsletter_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_node_newsletter';
+  $strongarm->value = '1';
+  $export['auto_entitylabel_node_newsletter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_pattern_node_newsletter';
+  $strongarm->value = '[node:field-newsletter-type:name] - [node:field-newsletter-title]';
+  $export['auto_entitylabel_pattern_node_newsletter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_php_node_newsletter';
+  $strongarm->value = 0;
+  $export['auto_entitylabel_php_node_newsletter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__newsletter';
   $strongarm->value = array(
     'view_modes' => array(
@@ -53,6 +74,12 @@ function cu_newsletter_strongarm() {
         'custom_settings' => FALSE,
       ),
       'email_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'embed' => array(
+        'custom_settings' => FALSE,
+      ),
+      'feature' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -122,8 +149,15 @@ function cu_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_newsletter_pattern';
-  $strongarm->value = 'newsletter/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
+  $strongarm->value = 'newsletter/[node:field-newsletter-type:field-newsletter-path]/[node:field-newsletter-title]';
   $export['pathauto_node_newsletter_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_newsletter_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_newsletter_pattern'] = $strongarm;
 
   return $export;
 }

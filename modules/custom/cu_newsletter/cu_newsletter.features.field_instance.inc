@@ -11,7 +11,7 @@ function cu_newsletter_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_ad_promo-field_newsletter_ad_image'
+  // 'field_collection_item-field_newsletter_ad_promo-field_newsletter_ad_image'.
   $field_instances['field_collection_item-field_newsletter_ad_promo-field_newsletter_ad_image'] = array(
     'bundle' => 'field_newsletter_ad_promo',
     'deleted' => 0,
@@ -112,7 +112,7 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_ad_promo-field_newsletter_ad_link'
+  // 'field_collection_item-field_newsletter_ad_promo-field_newsletter_ad_link'.
   $field_instances['field_collection_item-field_newsletter_ad_promo-field_newsletter_ad_link'] = array(
     'bundle' => 'field_newsletter_ad_promo',
     'default_value' => NULL,
@@ -146,6 +146,11 @@ function cu_newsletter_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 1,
+        'profile' => 'express_linkit_field_profile',
+      ),
       'rel_remove' => 'default',
       'title' => 'none',
       'title_label_use_field_label' => 0,
@@ -165,7 +170,7 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_section-field_newsletter_articles'
+  // 'field_collection_item-field_newsletter_section-field_newsletter_articles'.
   $field_instances['field_collection_item-field_newsletter_section-field_newsletter_articles'] = array(
     'bundle' => 'field_newsletter_section',
     'default_value' => NULL,
@@ -202,10 +207,14 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_section-field_newsletter_display'
+  // 'field_collection_item-field_newsletter_section-field_newsletter_display'.
   $field_instances['field_collection_item-field_newsletter_section-field_newsletter_display'] = array(
     'bundle' => 'field_newsletter_section',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'email_teaser',
+      ),
+    ),
     'default_value_function' => '',
     'default_value_php' => '',
     'deleted' => 0,
@@ -237,7 +246,7 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_section-field_newsletter_more_link'
+  // 'field_collection_item-field_newsletter_section-field_newsletter_more_link'.
   $field_instances['field_collection_item-field_newsletter_section-field_newsletter_more_link'] = array(
     'bundle' => 'field_newsletter_section',
     'default_value' => NULL,
@@ -260,7 +269,7 @@ function cu_newsletter_field_default_field_instances() {
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
-        'class' => 'button button-blue',
+        'class' => 'button button-blue button-small',
         'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
@@ -271,6 +280,11 @@ function cu_newsletter_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 1,
+        'profile' => 'express_linkit_field_profile',
+      ),
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_label_use_field_label' => 0,
@@ -290,7 +304,7 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_section-field_newsletter_section_title'
+  // 'field_collection_item-field_newsletter_section-field_newsletter_section_title'.
   $field_instances['field_collection_item-field_newsletter_section-field_newsletter_section_title'] = array(
     'bundle' => 'field_newsletter_section',
     'default_value' => NULL,
@@ -326,7 +340,7 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_text_block-field_newsletter_block_body'
+  // 'field_collection_item-field_newsletter_text_block-field_newsletter_block_body'.
   $field_instances['field_collection_item-field_newsletter_text_block-field_newsletter_block_body'] = array(
     'bundle' => 'field_newsletter_text_block',
     'default_value' => NULL,
@@ -342,11 +356,16 @@ function cu_newsletter_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'field_collection_item',
-    'fences_wrapper' => 'no_wrapper',
+    'fences_wrapper' => 'div_div_div',
     'field_name' => 'field_newsletter_block_body',
     'label' => 'Body',
     'required' => 0,
     'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -362,7 +381,7 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_text_block-field_newsletter_block_title'
+  // 'field_collection_item-field_newsletter_text_block-field_newsletter_block_title'.
   $field_instances['field_collection_item-field_newsletter_text_block-field_newsletter_block_title'] = array(
     'bundle' => 'field_newsletter_text_block',
     'default_value' => NULL,
@@ -397,7 +416,7 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-newsletter-body'
+  // Exported field_instance: 'node-newsletter-body'.
   $field_instances['node-newsletter-body'] = array(
     'bundle' => 'newsletter',
     'default_value' => NULL,
@@ -419,7 +438,7 @@ function cu_newsletter_field_default_field_instances() {
           'trim_type' => 'chars',
         ),
         'type' => 'smart_trim_format',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -451,7 +470,7 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-newsletter-field_newsletter_ad_promo'
+  // Exported field_instance: 'node-newsletter-field_newsletter_ad_promo'.
   $field_instances['node-newsletter-field_newsletter_ad_promo'] = array(
     'bundle' => 'newsletter',
     'default_value' => NULL,
@@ -465,7 +484,7 @@ function cu_newsletter_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'field_collection_fields',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -491,7 +510,7 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-newsletter-field_newsletter_intro_image'
+  // Exported field_instance: 'node-newsletter-field_newsletter_intro_image'.
   $field_instances['node-newsletter-field_newsletter_intro_image'] = array(
     'bundle' => 'newsletter',
     'deleted' => 0,
@@ -502,10 +521,10 @@ function cu_newsletter_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'email_feature_thumbnail',
+          'image_style' => 'email_large',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -605,7 +624,7 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-newsletter-field_newsletter_section'
+  // Exported field_instance: 'node-newsletter-field_newsletter_section'.
   $field_instances['node-newsletter-field_newsletter_section'] = array(
     'bundle' => 'newsletter',
     'default_value' => NULL,
@@ -619,7 +638,7 @@ function cu_newsletter_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'field_collection_fields',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -645,7 +664,7 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-newsletter-field_newsletter_text_block'
+  // Exported field_instance: 'node-newsletter-field_newsletter_text_block'.
   $field_instances['node-newsletter-field_newsletter_text_block'] = array(
     'bundle' => 'newsletter',
     'default_value' => NULL,
@@ -659,7 +678,7 @@ function cu_newsletter_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'field_collection_fields',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -685,6 +704,130 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-newsletter-field_newsletter_title'.
+  $field_instances['node-newsletter-field_newsletter_title'] = array(
+    'bundle' => 'newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_newsletter_title',
+    'label' => 'Newsletter Title',
+    'required' => 1,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-newsletter-field_newsletter_type'.
+  $field_instances['node-newsletter-field_newsletter_type'] = array(
+    'bundle' => 'newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_newsletter_type',
+    'label' => 'Newsletter Type/Name',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-newsletter-field_newsletter_path'.
+  $field_instances['taxonomy_term-newsletter-field_newsletter_path'] = array(
+    'bundle' => 'newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_newsletter_path',
+    'label' => 'Newsletter Path',
+    'required' => 1,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Ad/Promo');
@@ -696,6 +839,9 @@ function cu_newsletter_field_default_field_instances() {
   t('Intro Image');
   t('Link');
   t('More Link');
+  t('Newsletter Path');
+  t('Newsletter Title');
+  t('Newsletter Type/Name');
   t('Place an image at the top/beginning of your newsletter.');
   t('Provide a link to read more articles.');
   t('Section');
