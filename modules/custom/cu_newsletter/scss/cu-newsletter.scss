@@ -25,7 +25,7 @@
 .newsletter-section-wrapper > div:last-child {
   border: none;
   padding-bottom: 0;
-  margin-bottom: 0;
+  //margin-bottom: 0;
 }
 
 img.image-email_feature_thumbnail,
@@ -60,8 +60,13 @@ img.image-email_teaser_thumbnail {
     text-transform:uppercase;
 }
 p.field-name-field-newsletter-more-link {
-  text-align: center;
-  padding:20px 0 0;
+  //text-align: center;
+  padding:10px 0;
+  //background-color: #f2f2f2;
+  border-top:1px solid #e7e7e7;
+  //border-bottom: 1px solid #e7e7e7;
+  font-weight:600;
+  text-align: right;
 }
 .newsletter-text-block {
   h2.field-name-field-newsletter-block-title {

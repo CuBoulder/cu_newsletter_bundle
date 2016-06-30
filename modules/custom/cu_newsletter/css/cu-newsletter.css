@@ -8,7 +8,7 @@
 
 .node-view-mode-email-feature-content, .node-view-mode-email-teaser-content { overflow: hidden; }
 
-.newsletter-section-wrapper > div:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+.newsletter-section-wrapper > div:last-child { border: none; padding-bottom: 0; }
 
 img.image-email_feature_thumbnail, img.image-email_feature_thumbnail_large { margin: 0 0 10px 0; display: block; width: 100%; height: auto; max-width: 100%; }
 
@@ -17,7 +17,7 @@ img.image-email_teaser_thumbnail { float: left; margin: 0 10px 10px 0; width: 80
 @media (min-width: 480px) { img.image-email_teaser_thumbnail { width: 120px; height: auto; } }
 .node-view-mode-email-feature-content .article-tags a, .node-view-mode-email-teaser-content .article-tags a { background-color: #e7e7e7; color: #656565; padding: 4px; margin: 0 5px 5px 0; font-size: 10px; font-weight: bold; text-transform: uppercase; }
 
-p.field-name-field-newsletter-more-link { text-align: center; padding: 20px 0 0; }
+p.field-name-field-newsletter-more-link { padding: 10px 0; border-top: 1px solid #e7e7e7; font-weight: 600; text-align: right; }
 
 .newsletter-text-block h2.field-name-field-newsletter-block-title { font-size: 130%; }
 .newsletter-text-block .field-name-field-newsletter-block-body h3 { font-size: 120%; }
