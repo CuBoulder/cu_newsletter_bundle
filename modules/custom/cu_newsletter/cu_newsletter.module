@@ -9,6 +9,11 @@ include_once 'cu_newsletter.features.inc';
 function cu_newsletter_menu() {
   $items = array();
 
+  $items['node/%node/email']['theme callback'] = 'cu_newsletter_email_node_theme';
+  $items['node/%node/email']['theme arguments'] = array(1);
+  $items['node/%node/email']['access callback'] = TRUE;
+  $items['node/%node/email']['title'] = t('Email Version');
+
   return $items;
 }
 
@@ -16,36 +21,41 @@ function cu_newsletter_menu() {
 * Implements hook_menu_alter().
 */
 function cu_newsletter_menu_alter(&$items) {
-  $items['node/%node/email']['theme callback'] = 'cu_newsletter_email_node_theme';
-  $items['node/%node/email']['theme arguments'] = array(1);
-  $items['node/%node/email']['access arguments'] = array('update', 1);
-  $items['node/%node/email']['access callback'] = array('cu_newsletter_access');
-  $items['node/%node/email']['type'] = MENU_LOCAL_TASK;
-  $items['node/%node/email']['title'] = t('Email Version');
+
 }
 
 function cu_newsletter_access($op, $node) {
   if ($node->type == 'newsletter') {
-    return node_access($op, $node);
+    return TRUE;
   }
-  return FALSE;
+  if (node_access($op, $node)) {
+    return TRUE;
+  }
+  else {
+    return TRUE;
+  }
 }
-
 
 /**
 * For editing page nodes, uses the 'some_other_theme' theme.
 */
 function cu_newsletter_email_node_theme($node) {
   $default_theme = variable_get('theme_default','');
-  return $node->type == 'newsletter' ? 'emailnewsletter' : $default_theme;
+  if (node_access('update', $node)) {
+    return $node->type == 'newsletter' ? 'emailnewsletter' : $default_theme;
+  }
+  else {
+    return $default_theme;
+  }
+
 }
 
 /**
 * Implements hook_custom_theme().
 */
 function mymodule_custom_theme() {
-  if ((arg(0) == 'node') && (arg(2) == 'email')) {
-    return 'emailnewsletter';
+  if ((arg(0) == 'node') && (arg(2) == 'email') && (user_access('edit any newsletter content'))) {
+    //return 'emailnewsletter';
   }
 }
 
@@ -63,7 +73,24 @@ function cu_newsletter_page_alter(&$page) {
 function cu_newsletter_preprocess_page(&$vars) {
   if(isset($vars['node']) && $vars['node']->type == "newsletter") {
     if ((arg(0) == 'node') && (arg(2) != 'email')) {
+      if (user_access('edit any newsletter content')) {
+        $vars['tabs']['#primary'][] = array(
+          '#theme' => 'menu_local_task',
+          '#link' => array(
+            'path' => 'node/%/email',
+            'title' => t('Email Version'),
+            'load_functions' => array(
+              'node_load',
+            ),
+            'access_callback' => 'user_access',
+            'access_arguments' => array('edit any newsletter content'),
+            'tab_root' => 'node/%',
+            'tab_parent' => 'node/%',
+            'href' => 'node/' . $vars['node']->nid . '/email',
 
+          ),
+        );
+      }
 
       $newsletter_name = $vars['node']->field_newsletter_type[LANGUAGE_NONE][0]['taxonomy_term']->name;
       $newsletter_logo = $vars['node']->field_newsletter_type[LANGUAGE_NONE][0]['taxonomy_term']->field_newsletter_name_image;
@@ -82,8 +109,10 @@ function cu_newsletter_preprocess_node(&$vars) {
   if ($vars['type'] == 'newsletter') {
     if ((arg(0) == 'node') && (arg(2) == 'email')) {
       $vars['newsletter_name'] = $vars['field_newsletter_type'][0]['taxonomy_term']->name;
-      $newsletter_logo_uri = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image[LANGUAGE_NONE][0]['uri'];
-      $vars['newsletter_logo_url'] = image_style_url('medium', $newsletter_logo_uri);
+      if (!empty($vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image)) {
+        $newsletter_logo_uri = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image[LANGUAGE_NONE][0]['uri'];
+        $vars['newsletter_logo_url'] = image_style_url('medium', $newsletter_logo_uri);
+      }
     }
     else {
       if (!empty($vars['content']['field_newsletter_ad_promo']) || !empty($vars['content']['field_newsletter_text_block'])) {
@@ -97,6 +126,10 @@ function cu_newsletter_preprocess_node(&$vars) {
           'main' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
         );
       }
+      $vars['column_classes'] = array(
+        'main' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+        'sidebar' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+      );
     }
   }
 }
@@ -123,6 +156,20 @@ function cu_newsletter_preprocess_entity(&$vars) {
     unset($vars['content']['field_newsletter_display']);
     unset($vars['content']['field_newsletter_articles']);
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+
+function cu_newsletter_theme(&$existing, $type, $theme, $path) {
+  $registry = array();
+  $template_dir = drupal_get_path('module', 'cu_newsletter') . '/templates';
+  $registry['cu_newsletter_block'] = array(
+    'template' => 'cu-newsletter-block',
+    'path' => $template_dir,
+  );
+  return $registry;
 }
 
 /**
@@ -165,6 +212,7 @@ function cu_newsletter_image_default_styles() {
         'data' => array(
           'width' => 580,
           'height' => 270,
+          'upscale' => 1,
         ),
         'weight' => 2,
       ),
@@ -185,8 +233,9 @@ function cu_newsletter_image_default_styles() {
         'module' => 'focal_point',
         'name' => 'focal_point_scale_and_crop',
         'data' => array(
-          'width' => 960,
-          'height' => 480,
+          'width' => 1200,
+          'height' => 600,
+          'upscale' => 1,
         ),
         'weight' => 2,
       ),
@@ -209,6 +258,7 @@ function cu_newsletter_image_default_styles() {
         'data' => array(
           'width' => 160,
           'height' => 160,
+          'upscale' => 1,
         ),
         'weight' => 2,
       ),
@@ -231,6 +281,29 @@ function cu_newsletter_image_default_styles() {
         'data' => array(
           'width' => 580,
           'height' => 240,
+          'upscale' => 1,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+  $styles['email_ad_large'] = array(
+    'name' => 'email_ad_large',
+    'label' => 'email_ad_large',
+    'effects' => array(
+      10 => array(
+        'label' => 'Focal Point Scale And Crop',
+        'help' => 'Scale and crop based on data provided by <em>Focal Point</em>.',
+        'effect callback' => 'focal_point_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'focal_point',
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 1200,
+          'height' => 497,
+          'upscale' => 1,
         ),
         'weight' => 2,
       ),
@@ -370,7 +443,7 @@ function cu_newsletter_path_validate(&$form, &$form_state) {
   if ($results) {
     form_set_error('field_newsletter_path', t('A newsletter with this path already exists.'));
   }
- }
+}
 
 /**
  * Implements hook_secure_permissions().
@@ -391,7 +464,7 @@ function cu_newsletter_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
-      'administer byline newsletter terms',
+      'administer newsletter terms',
     ),
     'content_editor' => array(
       'create newsletter content',
@@ -399,7 +472,7 @@ function cu_newsletter_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
-      'administer byline newsletter terms',
+      'administer newsletter terms',
     ),
     'developer' => array(
       'add newsletter logo',
@@ -408,7 +481,7 @@ function cu_newsletter_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
-      'administer byline newsletter terms',
+      'administer newsletter terms',
     ),
     'site_owner' => array(
       'create newsletter content',
@@ -416,7 +489,7 @@ function cu_newsletter_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
-      'administer byline newsletter terms',
+      'administer newsletter terms',
     ),
   );
 
