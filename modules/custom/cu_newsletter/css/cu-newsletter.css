@@ -34,3 +34,11 @@ p.field-name-field-newsletter-more-link { padding: 10px 0; border-top: 1px solid
 .newsletter-ad-promo-wrapper { margin-bottom: 20px; }
 
 .newsletter-ad-promo img { display: block; margin-bottom: 20px; }
+
+.newsletter-view-mode-teaser h2.node-title-only, .newsletter-view-mode-teaser h3.node-title-only { margin: 0; }
+.newsletter-view-mode-teaser img { width: 100%; height: auto; }
+
+/* Admin Tabs */
+ul.primary li a.email-version:before { content: "\f0e0"; }
+
+ul.tabs--primary li a.email-version:before { content: "\f0e0"; }
