@@ -1,5 +1,11 @@
 <div class="newsletter-wrapper row clearfix">
+
   <div class="newsletter-main <?php print $column_classes['main']; ?>">
+    <?php if ($email_version_link): ?>
+      <p>
+        <?php print $email_version_link; ?>
+      </p>
+    <?php endif; ?>
     <?php
       if (!empty($content['field_newsletter_intro_image'])): ?>
       <div class="newsletter-hero">
@@ -21,13 +27,27 @@
     <div class="newsletter-sidebar <?php print $column_classes['sidebar']; ?>">
       <div class="newsletter-ad-promo-wrapper">
         <?php if (!empty($content['field_newsletter_ad_promo'][0])): ?>
-          <?php print render($content['field_newsletter_ad_promo'][0]); ?>
+          <?php
+            print render($content['field_newsletter_ad_promo'][0]);
+          ?>
         <?php endif; ?>
         <?php if (!empty($content['field_newsletter_text_block'])): ?>
-          <?php print render($content['field_newsletter_text_block']); ?>
+          <div class="newsletter-text-blocks clearfix row">
+            <?php
+              //ddl($content['field_newsletter_text_block']);
+              $blocks = array_intersect_key($content['field_newsletter_text_block'], element_children($content['field_newsletter_text_block']));
+              foreach ($blocks as $block) {
+                print theme('cu_newsletter_block', array('content' => $block));
+              }
+             ?>
+
+            <?php //print render($content['field_newsletter_text_block']); ?>
+          </div>
         <?php endif; ?>
         <?php if (!empty($content['field_newsletter_ad_promo'][1])): ?>
-          <?php print render($content['field_newsletter_ad_promo'][1]); ?>
+          <?php
+            print render($content['field_newsletter_ad_promo'][1]);
+          ?>
         <?php endif; ?>
       </div>
 

@@ -6,9 +6,9 @@
   <?php endif; ?>
   <div class="article-view-mode-email-teaser-content node-view-mode-email-teaser-content">
     <h3><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
-    <div class="article-summary"><?php print render($content['body']); ?></div>
-    <div class="article-tags">
-      <?php print render($content['field_tags']); ?>
+    <div class="article-teaser-meta">
+      <?php print $category_teaser_category_links; ?>
     </div>
+    <div class="article-summary"><?php print render($content['body']); ?></div>
   </div>
 </div>
