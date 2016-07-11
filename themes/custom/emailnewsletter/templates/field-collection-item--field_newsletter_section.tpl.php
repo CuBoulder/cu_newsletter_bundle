@@ -1,0 +1,31 @@
+<table class="row article-section-title">
+  <tr>
+    <td class="wrapper last">
+      <table class="twelve columns">
+        <tr>
+          <td class="text-pad">
+            <?php print render($content['field_newsletter_section_title']); ?>
+          </td>
+
+          <td class="expander"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<?php print render($content['articles']); ?>
+<table class="row article-section-link">
+  <tr>
+    <td class="wrapper last">
+      <table class="twelve columns">
+        <tr>
+          <td class="text-pad">
+            <?php print render($content['field_newsletter_more_link']); ?>
+          </td>
+
+          <td class="expander"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
