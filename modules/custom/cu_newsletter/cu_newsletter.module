@@ -111,7 +111,7 @@ function cu_newsletter_preprocess_node(&$vars) {
       $vars['newsletter_name'] = $vars['field_newsletter_type'][0]['taxonomy_term']->name;
       if (!empty($vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image)) {
         $newsletter_logo_uri = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image[LANGUAGE_NONE][0]['uri'];
-        $vars['newsletter_logo_url'] = image_style_url('medium', $newsletter_logo_uri);
+        $vars['newsletter_logo_url'] = image_style_url('small', $newsletter_logo_uri);
       }
     }
     else {
