@@ -71,10 +71,10 @@ function cu_newsletter_strongarm() {
         'custom_settings' => FALSE,
       ),
       'email_feature' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'email_teaser' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'embed' => array(
         'custom_settings' => FALSE,
