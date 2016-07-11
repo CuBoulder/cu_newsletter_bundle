@@ -42,3 +42,25 @@ function cu_newsletter_bundle_secure_permissions($role) {
     return $permissions[$role];
   }
 }
+
+/**
+ * Implements hook_express_node_list_groups().
+ * Provided by express_add_content.api.php.
+ */
+function cu_newsletter_bundle_express_node_list_groups($bundles) {
+
+  $bundles['news']['types'][] = 'Newsletter';
+
+  return $bundles;
+}
+
+/**
+ * Implements hook_express_bean_list_groups().
+ * Provided by express_add_content.api.php.
+ */
+function cu_newsletter_bundle_express_bean_list_groups($bundles) {
+
+  $bundles['news']['types'][] = 'Newsletter List';
+  
+  return $bundles;
+}
