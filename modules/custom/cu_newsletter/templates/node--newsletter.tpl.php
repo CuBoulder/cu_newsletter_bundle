@@ -34,14 +34,14 @@
         <?php if (!empty($content['field_newsletter_text_block'])): ?>
           <div class="newsletter-text-blocks clearfix row">
             <?php
-              //ddl($content['field_newsletter_text_block']);
               $blocks = array_intersect_key($content['field_newsletter_text_block'], element_children($content['field_newsletter_text_block']));
+
+              $block_wrapper_class = count($blocks) > 1 ? 'col-lg-6 col-md-6 col-sm-6 col-xs-12' : 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+
               foreach ($blocks as $block) {
-                print theme('cu_newsletter_block', array('content' => $block));
+                print theme('cu_newsletter_block', array('content' => $block, 'block_wrapper_class' => $block_wrapper_class));
               }
              ?>
-
-            <?php //print render($content['field_newsletter_text_block']); ?>
           </div>
         <?php endif; ?>
         <?php if (!empty($content['field_newsletter_ad_promo'][1])): ?>
