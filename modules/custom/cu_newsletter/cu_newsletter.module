@@ -434,6 +434,11 @@ function cu_newsletter_form_taxonomy_form_term_alter(&$form, &$form_state, $form
 function cu_newsletter_path_validate(&$form, &$form_state) {
   $path = $form_state['values']['field_newsletter_path'][LANGUAGE_NONE][0]['value'];
   $tid = $form_state['values']['tid'];
+  // Make sure entered value is converted to be path friendly
+  if (module_exists('pathauto')) {
+    module_load_include('inc', 'pathauto', 'pathauto');
+    $path = pathauto_cleanstring($path);
+  }
 
   $query = db_select('field_data_field_newsletter_path', 'path');
   $query->condition('path.field_newsletter_path_value', $path, '=');
@@ -443,6 +448,7 @@ function cu_newsletter_path_validate(&$form, &$form_state) {
   if ($results) {
     form_set_error('field_newsletter_path', t('A newsletter with this path already exists.'));
   }
+  $form_state['values']['field_newsletter_path'][LANGUAGE_NONE][0]['value'] = $path;
 }
 
 /**
