@@ -17,3 +17,5 @@ dependencies[] = text
 dependencies[] = cu_newsletter
 dependencies[] = cu_newsletter_list
 dependencies[] = cu_news_bundle
+
+bundle_cache_clear = 1
