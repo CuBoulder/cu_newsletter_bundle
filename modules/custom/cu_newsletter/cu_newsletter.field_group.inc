@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function cu_newsletter_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -21,7 +21,7 @@ function cu_newsletter_field_group_info() {
   $field_group->parent_name = 'group_newsletter';
   $field_group->data = array(
     'label' => 'Ads/Promos',
-    'weight' => '18',
+    'weight' => '22',
     'children' => array(
       0 => 'field_newsletter_ad_promo',
     ),
@@ -36,7 +36,7 @@ function cu_newsletter_field_group_info() {
       ),
     ),
   );
-  $export['group_newsletter_ads|node|newsletter|form'] = $field_group;
+  $field_groups['group_newsletter_ads|node|newsletter|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -49,7 +49,7 @@ function cu_newsletter_field_group_info() {
   $field_group->parent_name = 'group_newsletter';
   $field_group->data = array(
     'label' => 'Blocks',
-    'weight' => '17',
+    'weight' => '21',
     'children' => array(
       0 => 'field_newsletter_text_block',
     ),
@@ -64,7 +64,7 @@ function cu_newsletter_field_group_info() {
       ),
     ),
   );
-  $export['group_newsletter_blocks|node|newsletter|form'] = $field_group;
+  $field_groups['group_newsletter_blocks|node|newsletter|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -77,7 +77,7 @@ function cu_newsletter_field_group_info() {
   $field_group->parent_name = 'group_newsletter';
   $field_group->data = array(
     'label' => 'Intro',
-    'weight' => '14',
+    'weight' => '19',
     'children' => array(
       0 => 'body',
       1 => 'field_newsletter_intro_image',
@@ -93,7 +93,7 @@ function cu_newsletter_field_group_info() {
       ),
     ),
   );
-  $export['group_newsletter_intro|node|newsletter|form'] = $field_group;
+  $field_groups['group_newsletter_intro|node|newsletter|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -106,7 +106,7 @@ function cu_newsletter_field_group_info() {
   $field_group->parent_name = 'group_newsletter';
   $field_group->data = array(
     'label' => 'Sections',
-    'weight' => '16',
+    'weight' => '20',
     'children' => array(
       0 => 'field_newsletter_section',
     ),
@@ -121,7 +121,7 @@ function cu_newsletter_field_group_info() {
       ),
     ),
   );
-  $export['group_newsletter_sections|node|newsletter|form'] = $field_group;
+  $field_groups['group_newsletter_sections|node|newsletter|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -134,12 +134,12 @@ function cu_newsletter_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Elements',
-    'weight' => '3',
+    'weight' => '5',
     'children' => array(
-      0 => 'group_newsletter_sections',
-      1 => 'group_newsletter_ads',
-      2 => 'group_newsletter_blocks',
-      3 => 'group_newsletter_intro',
+      0 => 'group_newsletter_ads',
+      1 => 'group_newsletter_blocks',
+      2 => 'group_newsletter_intro',
+      3 => 'group_newsletter_sections',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -149,7 +149,15 @@ function cu_newsletter_field_group_info() {
       ),
     ),
   );
-  $export['group_newsletter|node|newsletter|form'] = $field_group;
+  $field_groups['group_newsletter|node|newsletter|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Ads/Promos');
+  t('Blocks');
+  t('Elements');
+  t('Intro');
+  t('Sections');
+
+  return $field_groups;
 }

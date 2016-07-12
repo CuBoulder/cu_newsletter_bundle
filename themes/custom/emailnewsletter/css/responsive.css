@@ -6,12 +6,6 @@
 			font-size: 21px !important;
 			word-break: normal;
 		}
-		a.view-small {
-			display: block !important;
-		}
-		a.view-large {
-			display: none !important;
-		}
 		.ad img {
 			width:100%;
 			height:auto;

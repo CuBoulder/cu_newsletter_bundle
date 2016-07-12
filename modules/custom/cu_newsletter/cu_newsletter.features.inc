@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function cu_newsletter_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
@@ -24,7 +27,7 @@ function cu_newsletter_node_info() {
     'newsletter' => array(
       'name' => t('Newsletter'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => 'Create a newsletter with a collection of articles.',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

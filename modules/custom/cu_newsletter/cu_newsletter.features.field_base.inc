@@ -10,7 +10,7 @@
 function cu_newsletter_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_newsletter_ad_image'
+  // Exported field_base: 'field_newsletter_ad_image'.
   $field_bases['field_newsletter_ad_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_newsletter_ad_link'
+  // Exported field_base: 'field_newsletter_ad_link'.
   $field_bases['field_newsletter_ad_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -61,7 +61,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_newsletter_ad_promo'
+  // Exported field_base: 'field_newsletter_ad_promo'.
   $field_bases['field_newsletter_ad_promo'] = array(
     'active' => 1,
     'cardinality' => 2,
@@ -83,7 +83,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_newsletter_articles'
+  // Exported field_base: 'field_newsletter_articles'.
   $field_bases['field_newsletter_articles'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -118,7 +118,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_newsletter_block_body'
+  // Exported field_base: 'field_newsletter_block_body'.
   $field_bases['field_newsletter_block_body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -137,7 +137,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_newsletter_block_title'
+  // Exported field_base: 'field_newsletter_block_title'.
   $field_bases['field_newsletter_block_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -158,7 +158,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_newsletter_display'
+  // Exported field_base: 'field_newsletter_display'.
   $field_bases['field_newsletter_display'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -185,7 +185,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_newsletter_intro_image'
+  // Exported field_base: 'field_newsletter_intro_image'.
   $field_bases['field_newsletter_intro_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -207,7 +207,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_newsletter_more_link'
+  // Exported field_base: 'field_newsletter_more_link'.
   $field_bases['field_newsletter_more_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -236,7 +236,50 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_newsletter_section'
+  // Exported field_base: 'field_newsletter_name_image'.
+  $field_bases['field_newsletter_name_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_newsletter_name_image',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'image',
+    'settings' => array(
+      'default_image' => 0,
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'image',
+  );
+
+  // Exported field_base: 'field_newsletter_path'.
+  $field_bases['field_newsletter_path'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_newsletter_path',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_newsletter_section'.
   $field_bases['field_newsletter_section'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -258,7 +301,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_newsletter_section_title'
+  // Exported field_base: 'field_newsletter_section_title'.
   $field_bases['field_newsletter_section_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -279,7 +322,7 @@ function cu_newsletter_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_newsletter_text_block'
+  // Exported field_base: 'field_newsletter_text_block'.
   $field_bases['field_newsletter_text_block'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -299,6 +342,53 @@ function cu_newsletter_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'field_collection',
+  );
+
+  // Exported field_base: 'field_newsletter_title'.
+  $field_bases['field_newsletter_title'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_newsletter_title',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_newsletter_type'.
+  $field_bases['field_newsletter_type'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_newsletter_type',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'newsletter',
+          'parent' => 0,
+        ),
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
   );
 
   return $field_bases;

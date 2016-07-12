@@ -1,3 +1,3 @@
 <div class="newsletter-text-block">
-  <? print render($content); ?>
+  <?php print render($content); ?>
 </div>
