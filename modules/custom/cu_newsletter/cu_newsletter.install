@@ -11,6 +11,14 @@ function cu_newsletter_enable() {
   $hidden_themes['emailnewsletter'] = 1;
   variable_set('express_theme_picker_theme_ignore', $hidden_themes);
   theme_enable(array('emailnewsletter'));
+
+  // Enable email view modes on article content type
+  $article_node_settings = variable_get('field_bundle_settings_node__article', array());
+  $article_node_settings['view_modes']['email_feature']['custom_settings'] = TRUE;
+  $article_node_settings['view_modes']['email_teaser']['custom_settings'] = TRUE;
+  variable_set('field_bundle_settings_node__article', $article_node_settings);
+
+  // Update field instances for email view modes
   $field = field_info_instance('node', 'field_image', 'article');
   $field['display']['email_feature'] = array(
     'label' => 'hidden',
