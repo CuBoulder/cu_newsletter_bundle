@@ -1,7 +1,7 @@
-name = "Newsletter Bundle"
+name = Newsletter Bundle
 description = Create email newsletters from article content on your site. <i>Requires the News and Article Bundle</i>.
 core = 7.x
-package = Features
+package = CU-Newsletter
 dependencies[] = ctools
 dependencies[] = entityreference
 dependencies[] = features
