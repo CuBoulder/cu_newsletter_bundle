@@ -1,6 +1,6 @@
 name = CU Newsletter List
 core = 7.x
-package = CU Newsletter Bundle
+package = CU-Newsletter
 dependencies[] = cu_newsletter
 dependencies[] = cu_newsletter_bundle
 features[bean_type][] = newsletter_list
