@@ -68,8 +68,9 @@ function cuemail_preprocess_node(&$vars) {
     ));
   }
   if ($vars['type'] == 'article') {
-
-    $vars['content']['field_article_thumbnail'][0]['#path']['options']['absolute'] = TRUE;
+    if (!empty($vars['content']['field_article_thumbnail'][0])) {
+      $vars['content']['field_article_thumbnail'][0]['#path']['options']['absolute'] = TRUE;
+    }
     if ($vars['view_mode'] == 'email_feature') {     $vars['content']['field_article_thumbnail'][0]['#image_style'] = 'email_feature_thumbnail';
     }
     if (isset($vars['field_article_categories'])) {
