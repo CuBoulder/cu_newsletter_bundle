@@ -902,6 +902,11 @@
   /* Articles */
   .content-top {
     margin-top: -20px;
+    position: relative;
+  }
+  .content-top td.newsletter-sections {
+    padding-top: 10px;
+    background-color: #FFFFFF;
   }
   .article-section-title,
   .article-section-link,
@@ -928,6 +933,7 @@
     font-size:20px;
     font-weight: bold;
     margin-top:10px;
+    margin-bottom: 10px;
   }
   h3.feature-title {
     font-size: 18px;

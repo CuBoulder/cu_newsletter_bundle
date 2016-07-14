@@ -128,7 +128,7 @@
 					<!-- start issue contents -->
 					<table class="container <?php if (!$has_intro) { print 'content-top'; } ?>">
 						<tr>
-							<td>
+							<td class="newsletter-sections">
                 <?php print render($content['field_newsletter_section']); ?>
 							</td>
             </tr>

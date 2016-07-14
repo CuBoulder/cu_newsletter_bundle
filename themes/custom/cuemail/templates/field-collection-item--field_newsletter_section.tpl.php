@@ -1,3 +1,4 @@
+<?php if (!empty($content['field_newsletter_section_title'])): ?>
 <table class="row article-section-title">
   <tr>
     <td class="wrapper last">
@@ -13,6 +14,7 @@
     </td>
   </tr>
 </table>
+<?php endif; ?>
 <?php print render($content['articles']); ?>
 <table class="row article-section-link">
   <tr>

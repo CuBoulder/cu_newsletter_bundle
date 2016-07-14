@@ -8,7 +8,7 @@
 function cu_newsletter_enable() {
   // Enable email theme
   $hidden_themes = variable_get('express_theme_picker_theme_ignore', array());
-  $hidden_themes['emailnewsletter'] = 1;
+  $hidden_themes['cuemail'] = 1;
   variable_set('express_theme_picker_theme_ignore', $hidden_themes);
   theme_enable(array('cuemail'));
 
