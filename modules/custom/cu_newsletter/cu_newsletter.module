@@ -41,8 +41,9 @@ function cu_newsletter_access($op, $node) {
 */
 function cu_newsletter_email_node_theme($node) {
   $default_theme = variable_get('theme_default','');
+  $email_theme = variable_get('email_newsletter_theme', 'cuemail');
   if (node_access('update', $node)) {
-    return $node->type == 'newsletter' ? 'emailnewsletter' : $default_theme;
+    return $node->type == 'newsletter' ? $email_theme : $default_theme;
   }
   else {
     return $default_theme;

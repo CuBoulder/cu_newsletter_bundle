@@ -10,7 +10,7 @@ function cu_newsletter_enable() {
   $hidden_themes = variable_get('express_theme_picker_theme_ignore', array());
   $hidden_themes['emailnewsletter'] = 1;
   variable_set('express_theme_picker_theme_ignore', $hidden_themes);
-  theme_enable(array('emailnewsletter'));
+  theme_enable(array('cuemail'));
 
   // Enable email view modes on article content type
   $article_node_settings = variable_get('field_bundle_settings_node__article', array());
