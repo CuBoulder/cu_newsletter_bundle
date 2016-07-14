@@ -9,8 +9,8 @@
   use \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
   $cssToInlineStyles = new CssToInlineStyles();
 
-  $css = file_get_contents(drupal_get_path('theme', 'emailnewsletter') . '/css/ememo.css');
-  $responsive = file_get_contents(drupal_get_path('theme', 'emailnewsletter') . '/css/responsive.css');
+  $css = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/ememo.css');
+  $responsive = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/responsive.css');
   $html = '<style>' . $css . '</style>' . '<style>' . $responsive . '</style>' . render($page['content']);
   //$html = str_replace("\xc2\xa0",' ',$html);
   $cssToInlineStyles->setHTML($html);

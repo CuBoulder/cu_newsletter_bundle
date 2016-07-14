@@ -1,8 +1,8 @@
 <?php
 
-function emailnewsletter_theme(&$existing, $type, $theme, $path) {
+function cuemail_theme(&$existing, $type, $theme, $path) {
   $registry = array();
-  $template_dir = drupal_get_path('theme', 'emailnewsletter') . '/templates';
+  $template_dir = drupal_get_path('theme', 'cuemail') . '/templates';
   $registry['newsletter_section_blocks'] = array(
     'template' => 'newsletter-section-blocks',
     'path' => $template_dir,
@@ -25,7 +25,7 @@ function emailnewsletter_theme(&$existing, $type, $theme, $path) {
 /**
  * Implements theme_preprocess_html().
  */
-function emailnewsletter_preprocess_html(&$vars) {
+function cuemail_preprocess_html(&$vars) {
   $data = array(
     '#tag' => 'meta',
     '#attributes' => array(
@@ -39,7 +39,7 @@ function emailnewsletter_preprocess_html(&$vars) {
 /**
  * Implements theme_preprocess_node().
  */
-function emailnewsletter_preprocess_node(&$vars) {
+function cuemail_preprocess_node(&$vars) {
 
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
   $url = url('node/' . $vars['nid'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => FALSE));
@@ -102,7 +102,7 @@ function emailnewsletter_preprocess_node(&$vars) {
 /**
  * Implements theme_image_style().
  */
-function emailnewsletter_image_style(&$vars) {
+function cuemail_image_style(&$vars) {
   // Determine the dimensions of the styled image.
   $dimensions = array(
     'width' => $vars['width'],

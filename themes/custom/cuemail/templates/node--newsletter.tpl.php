@@ -1,6 +1,6 @@
 <?php
   global $base_url;
-  $theme_path = drupal_get_path('theme', 'emailnewsletter');
+  $theme_path = drupal_get_path('theme', 'cuemail');
 
   $path = $base_url . '/' . $theme_path;
 ?>
@@ -187,7 +187,9 @@
                       <tr>
                         <td class="footer-content text-pad">
                             <p><strong><a href="<?php print $base_url; ?>"><?php print variable_get('site_name', ''); ?></a></strong></p>
+                            <!--
                             <p class="copyright">&copy; Regents of the University of Colorado</p>
+                          -->
                         </td>
                       </tr>
                     </table>
