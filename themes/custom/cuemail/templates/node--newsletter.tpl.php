@@ -15,7 +15,7 @@
 </head>
 <body>
   <div class="emailteaser" style="display:none !important;">
-		In This Issue: <?php print render($content['teaser']); ?>
+		<?php print render($content['teaser']); ?>
 	</div>
 	<table class="body">
 		<tr>
