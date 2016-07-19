@@ -7,8 +7,14 @@
 
 
             <div class="content-padding">
-              <?php print render($content['field_newsletter_intro_image']); ?>
-              <?php print render($content['body']); ?>
+              <div class="intro-image">
+                <?php print render($content['field_newsletter_intro_image']); ?>
+              </div>
+              <?php if (!empty($content['body'])): ?>
+                <div class="intro-text">
+                  <?php print render($content['body']); ?>
+                </div>
+              <?php endif; ?>
             </div>
           </td>
           <td class="expander"></td>
