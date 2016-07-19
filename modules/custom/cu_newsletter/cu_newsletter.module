@@ -119,6 +119,10 @@ function cu_newsletter_preprocess_node(&$vars) {
       if (!empty($vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_footer)) {
         $vars['content']['field_newsletter_footer'] = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_footer[LANGUAGE_NONE][0]['value'];
       }
+      // Add teaser for email intro
+      $newsletter_node = node_load($vars['node']->nid);
+      $newsletter = node_view($newsletter_node, 'teaser');
+      $vars['content']['teaser'] = $newsletter['body'];
     }
     else {
       if (!empty($vars['content']['field_newsletter_ad_promo']) || !empty($vars['content']['field_newsletter_text_block'])) {
