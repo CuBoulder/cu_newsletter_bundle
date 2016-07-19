@@ -899,6 +899,11 @@
     padding: 10px;
     background-color: #FFFFFF;
   }
+  .intro-image img {
+    float: none;
+    margin-bottom: 10px;
+    display: block;
+  }
   /* Articles */
   .content-top {
     margin-top: -20px;
