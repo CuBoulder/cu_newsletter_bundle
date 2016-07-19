@@ -186,10 +186,17 @@
                     <table class="twelve columns">
                       <tr>
                         <td class="footer-content text-pad">
-                            <p><strong><a href="<?php print $base_url; ?>"><?php print variable_get('site_name', ''); ?></a></strong></p>
-                            <!--
+                          <p><strong><a href="<?php print $base_url; ?>"><?php print variable_get('site_name', ''); ?></a></strong></p>
+                          <!--
                             <p class="copyright">&copy; Regents of the University of Colorado</p>
                           -->
+                          <?php if (!empty($content['field_newsletter_footer'])): ?>
+                            <div class="newsletter-footer">
+                              <?php
+                                print render($content['field_newsletter_footer']);
+                                ?>
+                            </div>
+                          <?php endif; ?>
                         </td>
                       </tr>
                     </table>

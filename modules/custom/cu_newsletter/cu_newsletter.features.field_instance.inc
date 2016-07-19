@@ -442,12 +442,22 @@ function cu_newsletter_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'text',
+        'module' => 'smart_trim',
         'settings' => array(
-          'trim_length' => 600,
+          'more_link' => 0,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 50,
+          'trim_link' => 0,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'words',
         ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
+        'type' => 'smart_trim_format',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -490,7 +500,7 @@ function cu_newsletter_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
     ),
     'entity_type' => 'node',
@@ -527,9 +537,13 @@ function cu_newsletter_field_default_field_instances() {
         'weight' => 1,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'large',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
@@ -644,7 +658,7 @@ function cu_newsletter_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'node',
@@ -684,7 +698,7 @@ function cu_newsletter_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'node',
@@ -722,7 +736,7 @@ function cu_newsletter_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
@@ -768,7 +782,7 @@ function cu_newsletter_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',
@@ -785,6 +799,47 @@ function cu_newsletter_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-newsletter-field_newsletter_footer'.
+  $field_instances['taxonomy_term-newsletter-field_newsletter_footer'] = array(
+    'bundle' => 'newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This text is displayed at the bottom of the <strong>email</strong> version of a newsletter.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_newsletter_footer',
+    'label' => 'E-mail Footer',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 3,
     ),
   );
 
@@ -894,7 +949,7 @@ function cu_newsletter_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -945,6 +1000,7 @@ function cu_newsletter_field_default_field_instances() {
   t('Body');
   t('Choose how articles in this section should display.');
   t('Display');
+  t('E-mail Footer');
   t('Image');
   t('Intro Image');
   t('Link');
@@ -957,6 +1013,7 @@ function cu_newsletter_field_default_field_instances() {
   t('Section');
   t('Section Title');
   t('Text Block');
+  t('This text is displayed at the bottom of the <strong>email</strong> version of a newsletter.');
   t('Title');
 
   return $field_instances;
