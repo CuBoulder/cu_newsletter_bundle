@@ -16,7 +16,7 @@
       </div>
 
     <?php endif; ?>
-    <?php if (!empty($content['body'])): ?>
+    <?php if (!empty($content['body'][0]['#markup'])): ?>
       <div class="newsletter-intro">
         <?php print render($content['body']); ?>
       </div>

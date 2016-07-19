@@ -15,7 +15,7 @@
 </head>
 <body>
   <div class="emailteaser" style="display:none !important;">
-		In This Issue:
+		<?php print render($content['teaser']); ?>
 	</div>
 	<table class="body">
 		<tr>
@@ -67,47 +67,7 @@
 
         </div>
 				<center>
-          <!--
-					<table class="container">
-						<tr>
-							<td>
-								<table class="title full">
-									<tr>
-                    <td class="newsletter-name">
-                      <h1><?php print $newsletter_name; ?></h1>
-                    </td>
-                    <td class="newsletter-logo">
-                      <img src="<?php print $path; ?>/images/logo-white.gif" alt=" " id="logo" />
-                    </td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-        -->
-            <table class="container issue-meta1">
-  						<tr>
-  							<td>
 
-  							</td>
-  						</tr>
-  					</table>
-
-
-          <!-- Article List -->
-          <!--
-          <table class="container article-list">
-            <tr>
-              <td>
-                <?php
-                  $list = theme('newsletter_list', array('content' => $content));
-                  print $list;
-
-                ?>
-              </td>
-            </tr>
-          </table>
-        -->
           <?php if (!empty($content['field_newsletter_intro_image']) || !empty($content['body'])): ?>
             <?php $has_intro = TRUE; ?>
             <!-- Intro -->
