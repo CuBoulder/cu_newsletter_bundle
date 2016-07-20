@@ -29,18 +29,18 @@
                     <td>
                       <table class=" full">
                         <tr>
-                          <td class="newsletter-name">
-                            <?php if (!empty($newsletter_logo_url)): ?>
+                          <?php if (!empty($newsletter_logo_url)): ?>
+                            <td class="newsletter-logo-single">
                               <h1><img src="<?php print $newsletter_logo_url; ?>" alt="<?php print $newsletter_name; ?>" /></h1>
-                            <?php else: ?>
+                            </td>
+                          <?php else: ?>
+                          <td class="newsletter-name">
                               <h1><?php print $newsletter_name; ?></h1>
-                            <?php endif; ?>
-
-
                           </td>
                           <td class="newsletter-logo">
                             <img src="<?php print $path; ?>/images/logo-black.gif" alt=" " id="logo" />
                           </td>
+                        <?php endif; ?>
                         </tr>
                       </table>
                       <table class="issue full">
