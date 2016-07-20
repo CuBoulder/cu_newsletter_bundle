@@ -836,6 +836,13 @@
   td.email-top {
     padding:0 0 20px;
   }
+  td.newsletter-logo-single {
+    padding:20px 10px 10px;
+    vertical-align: middle;
+  }
+  td.newsletter-logo-single img {
+    max-width:240px !important;
+  }
 	td.newsletter-name {
     width:60%;
     padding:40px 60px 20px 10px;
