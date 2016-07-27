@@ -141,6 +141,34 @@ function cu_newsletter_preprocess_node(&$vars) {
         'sidebar' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
       );
     }
+    //dpm($vars);
+    //$vars['elements']['field_newsletter_section'][0]['entity']['field_collection_item'][21]['field_newsletter_articles']['#items']
+    $articles = array();
+    $sections = array_intersect_key($vars['elements']['field_newsletter_section'], element_children($vars['elements']['field_newsletter_section']));
+    foreach ($sections as $section) {
+      $section_item = $section['entity']['field_collection_item'];
+      $section_item = current($section_item);
+      foreach ($section_item['field_newsletter_articles']['#items'] as $reference) {
+        $nid = $reference['target_id'];
+        $articles[$nid] = $nid;
+      }
+    }
+    // Get node titles
+    $query = db_select('node', 'n')
+    ->fields('n', array('nid', 'title'))
+    ->condition('n.nid', $articles, 'IN');
+    $nodes = $query->execute()->fetchAll();
+    $titles = array();
+    foreach ($nodes as $node) {
+      $titles[] = $node->title;
+    }
+    $attached_articles = array(
+      '#theme' => 'item_list',
+      '#items' => $titles,
+      '#type' => 'ul',
+      '#attributes' => array('class' => 'title-list'),
+    );
+    $vars['attached_articles'] = render($attached_articles);
   }
 }
 

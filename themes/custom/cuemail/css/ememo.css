@@ -771,6 +771,10 @@
     max-width: 130px !important;
   }
 
+  h1, h2, h3, h4, h5 {
+    mso-line-height-rule:exactly;
+  }
+
   a {
 		color: #007BC8;
 		text-decoration: none;
@@ -899,7 +903,8 @@
 	}
   /* Article List */
   .article-list {
-    display: none;
+    background-color: #fff;
+    padding: 10px;
   }
   /* Hero */
   td.hero-image1 {
