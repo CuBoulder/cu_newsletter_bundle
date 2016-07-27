@@ -107,7 +107,7 @@ function cu_newsletter_preprocess_page(&$vars) {
  */
 function cu_newsletter_preprocess_node(&$vars) {
 
-  if ($vars['type'] == 'newsletter') {
+  if ($vars['type'] == 'newsletter' && $vars['view_mode'] == 'full') {
     if ((arg(0) == 'node') && (arg(2) == 'email')) {
       $vars['newsletter_name'] = $vars['field_newsletter_type'][0]['taxonomy_term']->name;
       // Add newsletter image
@@ -154,21 +154,23 @@ function cu_newsletter_preprocess_node(&$vars) {
       }
     }
     // Get node titles
-    $query = db_select('node', 'n')
-    ->fields('n', array('nid', 'title'))
-    ->condition('n.nid', $articles, 'IN');
-    $nodes = $query->execute()->fetchAll();
-    $titles = array();
-    foreach ($nodes as $node) {
-      $titles[] = $node->title;
+    if (!empty($articles)) {
+      $query = db_select('node', 'n')
+      ->fields('n', array('nid', 'title'))
+      ->condition('n.nid', $articles, 'IN');
+      $nodes = $query->execute()->fetchAll();
+      $titles = array();
+      foreach ($nodes as $node) {
+        $titles[] = $node->title;
+      }
+      $attached_articles = array(
+        '#theme' => 'item_list',
+        '#items' => $titles,
+        '#type' => 'ul',
+        '#attributes' => array('class' => 'title-list'),
+      );
+      $vars['attached_articles'] = render($attached_articles);
     }
-    $attached_articles = array(
-      '#theme' => 'item_list',
-      '#items' => $titles,
-      '#type' => 'ul',
-      '#attributes' => array('class' => 'title-list'),
-    );
-    $vars['attached_articles'] = render($attached_articles);
   }
 }
 
