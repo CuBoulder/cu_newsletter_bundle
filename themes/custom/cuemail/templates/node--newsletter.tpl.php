@@ -169,6 +169,7 @@
                                 ?>
                             </div>
                           <?php endif; ?>
+                          <custom name="opencounter" type="tracking">
                         </td>
                       </tr>
                     </table>
