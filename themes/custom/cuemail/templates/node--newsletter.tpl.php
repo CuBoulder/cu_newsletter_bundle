@@ -80,7 +80,7 @@
             </table>
           <?php endif; ?>
 
-          <?php if (!empty($content['field_newsletter_intro_image']) || !empty($content['body'])): ?>
+          <?php if (!empty($content['field_newsletter_intro_image']) || !empty($content['body'][0]['#markup'])): ?>
             <?php $has_intro = TRUE; ?>
             <!-- Intro -->
             <table class="container content-top">
