@@ -26,11 +26,19 @@
   <?php if (!empty($column_classes['sidebar'])): ?>
     <div class="newsletter-sidebar <?php print $column_classes['sidebar']; ?>">
       <div class="newsletter-ad-promo-wrapper">
-        <?php if (!empty($content['field_newsletter_ad_promo'][0])): ?>
-          <?php
-            print render($content['field_newsletter_ad_promo'][0]);
-          ?>
-        <?php endif; ?>
+        <div class="row clearfix">
+          <?php if (!empty($content['field_newsletter_ad_promo'][0])): ?>
+            <?php
+              print render($content['field_newsletter_ad_promo'][0]);
+            ?>
+          <?php endif; ?>
+          <?php if (!empty($content['field_newsletter_ad_promo'][1])): ?>
+            <?php
+              print render($content['field_newsletter_ad_promo'][1]);
+            ?>
+          <?php endif; ?>
+        </div>
+
         <?php if (!empty($content['field_newsletter_text_block'])): ?>
           <div class="newsletter-text-blocks clearfix row">
             <?php
@@ -44,11 +52,7 @@
              ?>
           </div>
         <?php endif; ?>
-        <?php if (!empty($content['field_newsletter_ad_promo'][1])): ?>
-          <?php
-            print render($content['field_newsletter_ad_promo'][1]);
-          ?>
-        <?php endif; ?>
+
       </div>
 
       <?php  ?>
