@@ -1,6 +1,6 @@
 <?php hide($content['field_tags']); ?>
 <?php hide($content['article_tags']); ?>
-<div class="article-view-mode-email-teaser node-view-mode-email-teaser clearfix col-lg-6 col-md-6 col-sm-6 col-xs-12">
+<div class="article-view-mode-email-teaser node-view-mode-email-teaser clearfix <?php print $elements['#column_class'];  ?>">
   <?php if(!empty($content['field_article_thumbnail'])): ?>
     <?php print render($content['field_article_thumbnail']); ?>
   <?php endif; ?>

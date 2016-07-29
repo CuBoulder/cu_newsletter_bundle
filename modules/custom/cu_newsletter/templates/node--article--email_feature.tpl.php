@@ -3,7 +3,7 @@
 <?php
   $content['field_article_thumbnail'][0]['#image_style'] = 'email_feature_thumbnail_large';
   ?>
-<div class="article-view-mode-email-feature node-view-mode-email-feature clearfix col-lg-6 col-md-6 col-sm-6 col-xs-12">
+<div class="article-view-mode-email-feature node-view-mode-email-feature clearfix <?php print $elements['#column_class']; ?>">
   <?php if(!empty($content['field_article_thumbnail'])): ?>
     <?php print render($content['field_article_thumbnail']); ?>
   <?php endif; ?>

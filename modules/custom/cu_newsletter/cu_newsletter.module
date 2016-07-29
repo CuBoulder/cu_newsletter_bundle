@@ -141,8 +141,8 @@ function cu_newsletter_preprocess_node(&$vars) {
         'sidebar' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
       );
     }
-    //dpm($vars);
-    //$vars['elements']['field_newsletter_section'][0]['entity']['field_collection_item'][21]['field_newsletter_articles']['#items']
+
+    // Get sections and attached articles
     $articles = array();
     $sections = array_intersect_key($vars['elements']['field_newsletter_section'], element_children($vars['elements']['field_newsletter_section']));
     foreach ($sections as $section) {
@@ -193,6 +193,14 @@ function cu_newsletter_preprocess_entity(&$vars) {
     $nodes = node_load_multiple($nids);
     $vars['content']['articles'] = node_view_multiple($nodes, $view_mode);
     $vars['content']['articles']['#weight'] = 1;
+    $article_count = count($vars['content']['field_newsletter_articles']['#items']);
+    $article_column_class = $article_count > 1 ? 'col-lg-6 col-md-6 col-sm-6 col-xs-12' : 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+
+    foreach ($vars['content']['articles']['nodes'] as $nid => $node) {
+      if (is_array($node)) {
+        $vars['content']['articles']['nodes'][$nid]['#column_class'] = $article_column_class;
+      }
+    }
     unset($vars['content']['field_newsletter_display']);
     unset($vars['content']['field_newsletter_articles']);
   }
