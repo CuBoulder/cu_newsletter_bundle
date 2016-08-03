@@ -154,17 +154,56 @@ function cu_newsletter_preprocess_entity(&$vars) {
   $entity_type = $vars['elements']['#entity_type'];
   $bundle = $vars['elements']['#bundle'];
   // Only process newsletter sections
-  if ($entity_type == 'field_collection_item' && $bundle == 'field_newsletter_section') {
+  if ($entity_type == 'field_collection_item' && $bundle == 'field_newsletter_section1') {
     $view_mode = $vars['content']['field_newsletter_display'][0]['#markup'];
     $nids = array();
-    foreach ($vars['content']['field_newsletter_articles']['#items'] as $key => $value) {
-      $nids[$key] = $value['target_id'];
+    // $vars['content']['field_newsletter_section_content']['#items'][0]['value']
+    foreach ($vars['content']['field_newsletter_section_content']['#items'] as $key => $value) {
+      $nids[$key] = $value['value'];
     }
     $nodes = node_load_multiple($nids);
     $vars['content']['articles'] = node_view_multiple($nodes, $view_mode);
     $vars['content']['articles']['#weight'] = 1;
     unset($vars['content']['field_newsletter_display']);
-    unset($vars['content']['field_newsletter_articles']);
+    unset($vars['content']['field_newsletter_section_content']);
+  }
+  // Only preprocess field_newsletter_section field collections
+  if ($entity_type == 'field_collection_item' && $bundle == 'field_newsletter_section') {
+    // Get view mode to render
+    $view_mode = $vars['content']['field_newsletter_display'][0]['#markup'];
+    // Get items
+    $items = $vars['content']['field_newsletter_section_content'];
+    // Get only the children items
+    $children = array_intersect_key($items, element_children($items));
+    foreach ($children as $child) {
+      $item = current($child['entity']['field_collection_item']);
+      // If this contains article references, do those.
+      if (!empty($item['field_newsletter_articles'][0]['#markup'])) {
+        $nid = $item['field_newsletter_articles'][0]['#markup'];
+        $node = node_load($nid);
+        $vars['content']['articles'][] = node_view($node, $view_mode);
+      }
+      elseif (!empty($item['field_nl_section_content_title']) || !empty($item['field_nl_section_content_body'])) {
+        $contents = array();
+        $contents['title'] = $item['field_nl_section_content_title'];
+        $contents['body'] = $item['field_nl_section_content_body'];
+        $contents['image'] = $item['field_nl_section_content_image'];
+        //$contents['link'] = $item['field_nl_section_content_link'];
+        if ($view_mode == 'email_feature') {
+          $vars['content']['custom_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_feature', array('content' => $contents));
+        }
+        if ($view_mode == 'email_teaser') {
+          $vars['content']['custom_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_teaser', array('content' => $contents));
+        }
+      }
+    }
+    unset($vars['content']['field_newsletter_display']);
+    unset($vars['content']['field_newsletter_section_content']);
+  }
+  if ($entity_type == 'field_collection_item' && $bundle == 'field_newsletter_section_content') {
+    if (!empty($vars['content']['field_newsletter_articles'])) {
+      $nid = $vars['content']['field_newsletter_articles']['#items'][0]['target_id'];
+    }
   }
 }
 
@@ -177,6 +216,14 @@ function cu_newsletter_theme(&$existing, $type, $theme, $path) {
   $template_dir = drupal_get_path('module', 'cu_newsletter') . '/templates';
   $registry['cu_newsletter_block'] = array(
     'template' => 'cu-newsletter-block',
+    'path' => $template_dir,
+  );
+  $registry['cu_newsletter_custom_content_email_teaser'] = array(
+    'template' => 'cu-newsletter-custom-content-email-teaser',
+    'path' => $template_dir,
+  );
+  $registry['cu_newsletter_custom_content_email_feature'] = array(
+    'template' => 'cu-newsletter-custom-content-email-feature',
     'path' => $template_dir,
   );
   return $registry;
