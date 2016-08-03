@@ -1,7 +1,6 @@
 <?php
   global $base_url;
   $theme_path = drupal_get_path('theme', 'cuemail');
-
   $path = $base_url . '/' . $theme_path;
 ?>
 <?php hide($content['field_ememo_news']); ?>
@@ -39,7 +38,7 @@
                             </td>
                           <?php endif; ?>
                           <td class="newsletter-logo">
-                            <img src="<?php print $path; ?>/images/logo-black.gif" alt=" " id="logo" />
+                            <img src="<?php print $path; ?>/images/<?php print cuemail_logo_color($design); ?>" alt=" " id="logo" />
                           </td>
                         </tr>
                       </table>
@@ -123,7 +122,7 @@
 
           <!-- START BLOCKS -->
           <?php if (!empty($content['field_newsletter_text_block'])): ?>
-            <table class="container">
+            <table class="container email-blocks">
   						<tr>
   							<td>
                   <?php
@@ -150,7 +149,7 @@
           <?php endif; ?>
           <!-- END AD 2 -->
 
-          <table class="container">
+          <table class="container email-footer">
             <tr>
               <td>
                 <table class="row footer">

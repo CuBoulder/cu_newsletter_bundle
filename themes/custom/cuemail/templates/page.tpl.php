@@ -9,12 +9,27 @@
   use \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
   $cssToInlineStyles = new CssToInlineStyles();
 
-  $css = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/ememo.css');
+  // Get design
+  $newsletter_node = menu_get_object();
+  $design = $newsletter_node->field_newsletter_type[LANGUAGE_NONE][0]['taxonomy_term']->field_newsletter_design[LANGUAGE_NONE][0]['value'];
+  // Prepare CSS
+  $css = array();
+  // Load Framework CSS
+  $css['framework'] = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/framework.css');
+  // Load Global CSS
+  $css['global'] = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/global.css');
+  // Load Design CSS
+  $css['design'] = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/' . $design . '.css');
+  // Load Responsive CSS
+  // Responsive is kept separate because it should not be inlined.
   $responsive = file_get_contents(drupal_get_path('theme', 'cuemail') . '/css/responsive.css');
-  $html = '<style>' . $css . '</style>' . '<style>' . $responsive . '</style>' . render($page['content']);
+
+  $styles = join(' ', $css);
+
+  $html = '<style>' . $styles . '</style>' . '<style>' . $responsive . '</style>' . render($page['content']);
   //$html = str_replace("\xc2\xa0",' ',$html);
   $cssToInlineStyles->setHTML($html);
-  $cssToInlineStyles->setCSS($css);
+  $cssToInlineStyles->setCSS($styles);
 
 ?>
 <style>

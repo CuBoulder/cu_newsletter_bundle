@@ -110,6 +110,8 @@ function cu_newsletter_preprocess_node(&$vars) {
   if ($vars['type'] == 'newsletter' && $vars['view_mode'] == 'full') {
     if ((arg(0) == 'node') && (arg(2) == 'email')) {
       $vars['newsletter_name'] = $vars['field_newsletter_type'][0]['taxonomy_term']->name;
+      // Get newsletter design
+      $vars['design'] = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_design[LANGUAGE_NONE][0]['value'];
       // Add newsletter image
       if (!empty($vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image)) {
         $newsletter_logo_uri = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_name_image[LANGUAGE_NONE][0]['uri'];
@@ -196,12 +198,21 @@ function cu_newsletter_preprocess_entity(&$vars) {
     $vars['content']['articles']['#weight'] = 1;
     $article_count = count($vars['content']['field_newsletter_articles']['#items']);
     $article_column_class = $article_count > 1 ? 'col-lg-6 col-md-6 col-sm-6 col-xs-12' : 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
-
+    $count = 0;
     foreach ($vars['content']['articles']['nodes'] as $nid => $node) {
       if (is_array($node)) {
+        $zebra = ($count++%2==1) ? 'odd' : 'even';
+        $vars['content']['articles']['nodes'][$nid]['zebra'] = $zebra;
         $vars['content']['articles']['nodes'][$nid]['#column_class'] = $article_column_class;
       }
     }
+    // Add last class to node array
+    $articles = $vars['content']['articles']['nodes'];
+    unset($articles['#sorted']);
+    end($articles);         // move the internal pointer to the end of the array
+
+    $key = key($articles);
+    $vars['content']['articles']['nodes'][$key]['#order_class'] = 'last';
     unset($vars['content']['field_newsletter_display']);
     unset($vars['content']['field_newsletter_section_content']);
   }
@@ -590,4 +601,14 @@ function cu_newsletter_secure_permissions($role) {
   if (isset($permissions[$role])) {
     return $permissions[$role];
   }
+}
+
+function cu_newsletter_design_options() {
+  $options = array(
+    'design-01' => 'Classic',
+    'design-02' => 'Minimal',
+    'design-03' => 'Design 3',
+    'design-04' => 'Design 4',
+  );
+  return $options;
 }
