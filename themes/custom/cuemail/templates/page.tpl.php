@@ -47,6 +47,12 @@
 	//Remove all leading and trailing white space using PHP's built-in trim() function, and replace the characters defined in the $character_map array using PHP's built-in strtr() function.
 	//$email = trim( strtr($email, $character_map) );
   print $email;
+  $compressed = cuemail_html_compress($email);
+
+  function cuemail_html_compress($email){
+    return str_replace(array("\n","\r","\t"),'',$email);
+  }
+
 
 ?>
 <hr />
@@ -54,6 +60,6 @@
 <?php
   //$html = render($page['content']);
   // fixing weird encoding of &nbsp that is inserted from wysiwyg
-  print htmlentities($email, ENT_COMPAT | ENT_HTML401, 'UTF-8');
+  print htmlentities($compressed, ENT_COMPAT | ENT_HTML401, 'UTF-8');
 ?>
 </textarea>

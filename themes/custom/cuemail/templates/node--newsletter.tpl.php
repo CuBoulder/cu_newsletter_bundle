@@ -30,17 +30,17 @@
                       <table class=" full">
                         <tr>
                           <?php if (!empty($newsletter_logo_url)): ?>
-                            <td class="newsletter-logo-single">
+                            <td class="newsletter-name">
                               <h1><img src="<?php print $newsletter_logo_url; ?>" alt="<?php print $newsletter_name; ?>" /></h1>
                             </td>
                           <?php else: ?>
-                          <td class="newsletter-name">
-                              <h1><?php print $newsletter_name; ?></h1>
-                          </td>
+                            <td class="newsletter-name">
+                                <h1><?php print $newsletter_name; ?></h1>
+                            </td>
+                          <?php endif; ?>
                           <td class="newsletter-logo">
                             <img src="<?php print $path; ?>/images/logo-black.gif" alt=" " id="logo" />
                           </td>
-                        <?php endif; ?>
                         </tr>
                       </table>
                       <table class="issue full">
@@ -67,8 +67,20 @@
 
         </div>
 				<center>
+          <?php if ($_GET['issue-contents'] == 1): ?>
+            <table class="container content-top">
+              <tr>
+                <td class="article-list">
+                  <strong>In this issue:</strong>
+                  <?php
+                    print $attached_articles;
+                  ?>
+                </td>
+              </tr>
+            </table>
+          <?php endif; ?>
 
-          <?php if (!empty($content['field_newsletter_intro_image']) || !empty($content['body'])): ?>
+          <?php if (!empty($content['field_newsletter_intro_image']) || !empty($content['body'][0]['#markup'])): ?>
             <?php $has_intro = TRUE; ?>
             <!-- Intro -->
             <table class="container content-top">
@@ -157,6 +169,7 @@
                                 ?>
                             </div>
                           <?php endif; ?>
+                          <custom name="opencounter" type="tracking">
                         </td>
                       </tr>
                     </table>

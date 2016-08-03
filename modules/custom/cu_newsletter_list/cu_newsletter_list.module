@@ -13,8 +13,6 @@ include_once 'cu_newsletter_list.features.inc';
  */
 function cu_newsletter_list_preprocess_entity(&$vars) {
   if ($vars['elements']['#bundle'] == 'newsletter_list') {
-    ddl($vars['bean']);
-
 
     $query = db_select('node', 'n');
     $show_pager = 0;

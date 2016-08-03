@@ -4,20 +4,20 @@
 
 .newsletter-intro p:last-child { margin-bottom: 0; }
 
-.node-view-mode-email-feature, .node-view-mode-email-teaser { border-bottom: 1px solid #e7e7e7; padding-bottom: 20px; margin-bottom: 20px; }
+.node-view-mode-email-feature, .node-view-mode-email-teaser { padding-bottom: 20px; margin-bottom: 20px; }
 
-.node-view-mode-email-feature-content, .node-view-mode-email-teaser-content { overflow: hidden; }
-
-.newsletter-section-wrapper > div:last-child { border: none; padding-bottom: 0; }
+.node-view-mode-email-teaser img { float: right; margin: 0 0 10px 10px; width: 80px; height: auto; }
+.node-view-mode-email-teaser h3 { font-size: 110%; }
 
 img.image-email_feature_thumbnail, img.image-email_feature_thumbnail_large { margin: 0 0 10px 0; display: block; width: 100%; height: auto; max-width: 100%; }
 
-img.image-email_teaser_thumbnail { float: left; margin: 0 10px 10px 0; width: 80px; height: auto; }
+img.image-email_teaser_thumbnail1 { float: left; margin: 0 10px 10px 0; width: 80px; height: auto; }
 
 @media (min-width: 480px) { img.image-email_teaser_thumbnail { width: 120px; height: auto; } }
 .node-view-mode-email-feature-content .article-tags a, .node-view-mode-email-teaser-content .article-tags a { background-color: #e7e7e7; color: #656565; padding: 4px; margin: 0 5px 5px 0; font-size: 10px; font-weight: bold; text-transform: uppercase; }
 
-p.field-name-field-newsletter-more-link { padding: 10px 0; border-top: 1px solid #e7e7e7; font-weight: 600; text-align: right; }
+p.field-name-field-newsletter-more-link { font-weight: 600; margin-bottom: 40px; }
+p.field-name-field-newsletter-more-link a:before { font-family: "FontAwesome"; content: "\f061"; padding-right: 8px; }
 
 .newsletter-text-block h2.field-name-field-newsletter-block-title { font-size: 130%; }
 .newsletter-text-block .field-name-field-newsletter-block-body h3 { font-size: 120%; }
