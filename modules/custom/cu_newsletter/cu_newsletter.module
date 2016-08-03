@@ -213,28 +213,35 @@ function cu_newsletter_preprocess_entity(&$vars) {
     $items = $vars['content']['field_newsletter_section_content'];
     // Get only the children items
     $children = array_intersect_key($items, element_children($items));
+    // Count how many articles are in each section
+    $content_count = count($children);
+    $column_class = $content_count > 1 ? 'col-lg-6 col-md-6 col-sm-6 col-xs-12' : 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+
     foreach ($children as $child) {
       $item = current($child['entity']['field_collection_item']);
       // If this contains article references, do those.
       if (!empty($item['field_newsletter_articles'][0]['#markup'])) {
         $nid = $item['field_newsletter_articles'][0]['#markup'];
         $node = node_load($nid);
-        $vars['content']['articles'][] = node_view($node, $view_mode);
+        $vars['content']['newsletter_content'][$nid] = node_view($node, $view_mode);
+
+        $vars['content']['newsletter_content'][$nid]['#column_class'] = $column_class;
       }
       elseif (!empty($item['field_nl_section_content_title']) || !empty($item['field_nl_section_content_body'])) {
         $contents = array();
         $contents['title'] = $item['field_nl_section_content_title'];
         $contents['body'] = $item['field_nl_section_content_body'];
         $contents['image'] = $item['field_nl_section_content_image'];
-        //$contents['link'] = $item['field_nl_section_content_link'];
+        $contents['column_class'] = $column_class;
         if ($view_mode == 'email_feature') {
-          $vars['content']['custom_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_feature', array('content' => $contents));
+          $vars['content']['newsletter_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_feature', array('content' => $contents));
         }
         if ($view_mode == 'email_teaser') {
-          $vars['content']['custom_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_teaser', array('content' => $contents));
+          $vars['content']['newsletter_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_teaser', array('content' => $contents));
         }
       }
     }
+
     unset($vars['content']['field_newsletter_display']);
     unset($vars['content']['field_newsletter_section_content']);
   }

@@ -1,7 +1,9 @@
 <?php
-  $content['image'][0]['#image_style'] = 'email_feature_thumbnail_large';
+  if (!empty($content['image'])) {
+    $content['image'][0]['#image_style'] = 'email_feature_thumbnail_large';
+  }
 ?>
-<div class="article-view-mode-email-feature node-view-mode-email-feature clearfix">
+<div class="article-view-mode-email-feature node-view-mode-email-feature clearfix <?php print $content['column_class']; ?>">
   <?php if(!empty($content['image'])): ?>
     <?php print render($content['image']); ?>
   <?php endif; ?>

@@ -1,10 +1,9 @@
 <?php
-  ddl($content);
-  $content['image'][0]['#image_style'] = 'email_teaser_thumbnail';
+  if (!empty($content['image'])) {
+    $content['image'][0]['#image_style'] = 'email_teaser_thumbnail';
+  }
 ?>
-
-
-<div class="article-view-mode-email-teaser node-view-mode-email-teaser clearfix">
+<div class="article-view-mode-email-teaser node-view-mode-email-teaser clearfix <?php print $content['column_class']; ?>">
   <?php if(!empty($content['image'])): ?>
     <?php print render($content['image']); ?>
   <?php endif; ?>
