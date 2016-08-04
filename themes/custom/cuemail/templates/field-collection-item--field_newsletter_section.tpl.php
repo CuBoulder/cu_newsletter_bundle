@@ -15,7 +15,7 @@
   </tr>
 </table>
 <?php endif; ?>
-<?php print render($content['articles']); ?>
+<?php print render($content['newsletter_content']); ?>
 <table class="row article-section-link">
   <tr>
     <td class="wrapper last">

@@ -170,43 +170,6 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_newsletter_section-field_newsletter_articles'.
-  $field_instances['field_collection_item-field_newsletter_section-field_newsletter_articles'] = array(
-    'bundle' => 'field_newsletter_section',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(),
-        'type' => 'entityreference_entity_id',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'fences_wrapper' => 'no_wrapper',
-    'field_name' => 'field_newsletter_articles',
-    'label' => 'Articles',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
   // 'field_collection_item-field_newsletter_section-field_newsletter_display'.
   $field_instances['field_collection_item-field_newsletter_section-field_newsletter_display'] = array(
     'bundle' => 'field_newsletter_section',
@@ -304,6 +267,41 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_newsletter_section-field_newsletter_section_content'.
+  $field_instances['field_collection_item-field_newsletter_section-field_newsletter_section_content'] = array(
+    'bundle' => 'field_newsletter_section',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_fields',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'fences_wrapper' => 'div_div_div',
+    'field_name' => 'field_newsletter_section_content',
+    'label' => 'Section Contents',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_newsletter_section-field_newsletter_section_title'.
   $field_instances['field_collection_item-field_newsletter_section-field_newsletter_section_title'] = array(
     'bundle' => 'field_newsletter_section',
@@ -335,7 +333,256 @@ function cu_newsletter_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_newsletter_section_content-field_newsletter_articles'.
+  $field_instances['field_collection_item-field_newsletter_section_content-field_newsletter_articles'] = array(
+    'bundle' => 'field_newsletter_section_content',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'fences_wrapper' => 'div_div_div',
+    'field_name' => 'field_newsletter_articles',
+    'label' => 'Articles',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_newsletter_section_content-field_nl_section_content_body'.
+  $field_instances['field_collection_item-field_newsletter_section_content-field_nl_section_content_body'] = array(
+    'bundle' => 'field_newsletter_section_content',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_nl_section_content_body',
+    'label' => 'Body',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_newsletter_section_content-field_nl_section_content_image'.
+  $field_instances['field_collection_item-field_newsletter_section_content-field_nl_section_content_image'] = array(
+    'bundle' => 'field_newsletter_section_content',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'email_feature_thumbnail_large',
+        ),
+        'type' => 'image',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'fences_wrapper' => 'div_div_div',
+    'field_name' => 'field_nl_section_content_image',
+    'label' => 'Image',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 1,
+      'default_image' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'insert' => 0,
+        'insert_absolute' => FALSE,
+        'insert_class' => '',
+        'insert_default' => 'auto',
+        'insert_styles' => array(
+          'auto' => 'auto',
+          'colorbox__backstretch' => 0,
+          'colorbox__el_hero' => 0,
+          'colorbox__email_ad' => 0,
+          'colorbox__email_ad_large' => 0,
+          'colorbox__email_feature_thumbnail' => 0,
+          'colorbox__email_feature_thumbnail_large' => 0,
+          'colorbox__email_large' => 0,
+          'colorbox__email_medium' => 0,
+          'colorbox__email_teaser_thumbnail' => 0,
+          'colorbox__flexslider_full' => 0,
+          'colorbox__flexslider_thumbnail' => 0,
+          'colorbox__focal_point_preview' => 0,
+          'colorbox__hero' => 0,
+          'colorbox__large' => 0,
+          'colorbox__large_square_thumbnail' => 0,
+          'colorbox__large_wide_thumbnail' => 0,
+          'colorbox__linkit_thumb' => 0,
+          'colorbox__medium' => 0,
+          'colorbox__preview' => 0,
+          'colorbox__slider' => 0,
+          'colorbox__slider-large' => 0,
+          'colorbox__small' => 0,
+          'colorbox__small_square_thumbnail' => 0,
+          'colorbox__small_thumbnail' => 0,
+          'colorbox__square' => 0,
+          'colorbox__square_thumbnail' => 0,
+          'colorbox__testing' => 0,
+          'colorbox__thumbnail' => 0,
+          'icon_link' => 0,
+          'image' => 0,
+          'image_backstretch' => 0,
+          'image_el_hero' => 0,
+          'image_email_ad' => 0,
+          'image_email_ad_large' => 0,
+          'image_email_feature_thumbnail' => 0,
+          'image_email_feature_thumbnail_large' => 0,
+          'image_email_large' => 0,
+          'image_email_medium' => 0,
+          'image_email_teaser_thumbnail' => 0,
+          'image_flexslider_full' => 0,
+          'image_flexslider_thumbnail' => 0,
+          'image_focal_point_preview' => 0,
+          'image_hero' => 0,
+          'image_large' => 0,
+          'image_large_square_thumbnail' => 0,
+          'image_large_wide_thumbnail' => 0,
+          'image_linkit_thumb' => 0,
+          'image_medium' => 0,
+          'image_preview' => 0,
+          'image_slider' => 0,
+          'image_slider-large' => 0,
+          'image_small' => 0,
+          'image_small_square_thumbnail' => 0,
+          'image_small_thumbnail' => 0,
+          'image_square' => 0,
+          'image_square_thumbnail' => 0,
+          'image_testing' => 0,
+          'image_thumbnail' => 0,
+          'link' => 0,
+        ),
+        'insert_width' => '',
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_newsletter_section_content-field_nl_section_content_title'.
+  $field_instances['field_collection_item-field_newsletter_section_content-field_nl_section_content_title'] = array(
+    'bundle' => 'field_newsletter_section_content',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_nl_section_content_title',
+    'label' => 'Title',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 1,
+        'profile' => 'express_linkit_field_profile',
+      ),
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 1,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 'optional',
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 4,
     ),
   );
 
@@ -793,6 +1040,45 @@ function cu_newsletter_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-newsletter-field_newsletter_design'.
+  $field_instances['taxonomy_term-newsletter-field_newsletter_design'] = array(
+    'bundle' => 'newsletter',
+    'default_value' => array(
+      0 => array(
+        'value' => 'design-01',
+      ),
+    ),
+    'default_value_function' => '',
+    'default_value_php' => '',
+    'deleted' => 0,
+    'description' => 'Choose a design for the email version of the newsletter. The web version will be displayed in the site\'s design.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_newsletter_design',
+    'label' => 'Design',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-newsletter-field_newsletter_footer'.
   $field_instances['taxonomy_term-newsletter-field_newsletter_footer'] = array(
     'bundle' => 'newsletter',
@@ -829,7 +1115,7 @@ function cu_newsletter_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -939,7 +1225,7 @@ function cu_newsletter_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -988,7 +1274,9 @@ function cu_newsletter_field_default_field_instances() {
   t('Ad/Promo');
   t('Articles');
   t('Body');
+  t('Choose a design for the email version of the newsletter. The web version will be displayed in the site\'s design.');
   t('Choose how articles in this section should display.');
+  t('Design');
   t('Display');
   t('E-mail Footer');
   t('Image');
@@ -1001,6 +1289,7 @@ function cu_newsletter_field_default_field_instances() {
   t('Place an image at the top/beginning of your newsletter.');
   t('Provide a link to read more articles.');
   t('Section');
+  t('Section Contents');
   t('Section Title');
   t('Text Block');
   t('This text is displayed at the bottom of the <strong>email</strong> version of a newsletter.');

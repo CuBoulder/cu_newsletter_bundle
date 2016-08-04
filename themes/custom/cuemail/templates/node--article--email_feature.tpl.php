@@ -1,9 +1,7 @@
 <?php hide($content['field_tags']); ?>
 <?php hide($content['article_tags']); ?>
 
-
-
-<table class="row article-content">
+<table class="row article-content article-feature <?php print $elements['zebra']; ?> <?php print $elements['#order_class']; ?>">
   <tr>
     <td class="wrapper last">
       <table class="twelve columns">
@@ -27,4 +25,4 @@
     </td>
   </tr>
 </table>
-<div class="border border-inset"></div>
+<div class="border border-inset article-feature-border <?php print $elements['#order_class']; ?>"></div>

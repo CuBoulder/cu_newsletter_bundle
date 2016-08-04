@@ -1,7 +1,10 @@
 <?php hide($content['field_tags']); ?>
 <?php hide($content['article_tags']); ?>
+
 <?php
-  $content['field_article_thumbnail'][0]['#image_style'] = 'email_feature_thumbnail_large';
+  if (!empty($content['image'])) {
+    $content['field_article_thumbnail'][0]['#image_style'] = 'email_feature_thumbnail_large';
+  }
   ?>
 <div class="article-view-mode-email-feature node-view-mode-email-feature clearfix <?php print $elements['#column_class']; ?>">
   <?php if(!empty($content['field_article_thumbnail'])): ?>
