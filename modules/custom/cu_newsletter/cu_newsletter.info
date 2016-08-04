@@ -20,8 +20,7 @@ dependencies[] = text
 features[ctools][] = ds:ds:1
 features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
-features[ds_view_modes][] = email_feature
-features[ds_view_modes][] = email_teaser
+
 features[features_api][] = api:2
 features[field_base][] = field_newsletter_ad_image
 features[field_base][] = field_newsletter_ad_link
