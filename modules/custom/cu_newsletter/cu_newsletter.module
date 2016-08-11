@@ -298,7 +298,7 @@ function cu_newsletter_image_default_styles() {
 function cu_newsletter_node_insert($node) {
   // _cu_newsletter_publish_nodes($node);
   if ($node->type == 'newsletter') {
-    drupal_goto('admin/newsletter/publish/confirm/' . $node->nid);
+    //drupal_goto('admin/newsletter/publish/confirm/' . $node->nid);
   }
 }
 
@@ -308,6 +308,9 @@ function cu_newsletter_node_insert($node) {
  */
 function cu_newsletter_node_update($node) {
   // _cu_newsletter_publish_nodes($node);
+  if ($node->type == 'newsletter' && $node->status == 1) {
+    // drupal_goto('admin/newsletter/publish/confirm/' . $node->nid);
+  }
 }
 
 /**
@@ -492,7 +495,7 @@ function cu_newsletter_design_options() {
  *  Implements hook_form_FORM_ID_alter.
  */
 function cu_newsletter_form_newsletter_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['#submit'][] = 'cu_newsletter_publish_confirm';
+  // $form['#submit'][] = 'cu_newsletter_publish_confirm';
 }
 
 /**
@@ -501,6 +504,7 @@ function cu_newsletter_form_newsletter_node_form_alter(&$form, &$form_state, $fo
  * Send user to cu_newsletter_publish_confirm_form if published.
  */
 function cu_newsletter_publish_confirm($form, &$form_state) {
+
   if ($form_state['values']['status'] == 1 && isset($form_state['values']['nid'])) {
     drupal_goto('admin/newsletter/publish/confirm/' . $form_state['values']['nid']);
   }
