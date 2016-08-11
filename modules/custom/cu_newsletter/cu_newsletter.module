@@ -217,6 +217,7 @@ function cu_newsletter_preprocess_entity(&$vars) {
       elseif (!empty($item['field_nl_section_content_title']) || !empty($item['field_nl_section_content_body'])) {
         $contents = array();
         $contents['title'] = $item['field_nl_section_content_title'];
+        $contents['link'] = $item['field_nl_section_content_title']['#items'][0]['url'];
         $contents['body'] = $item['field_nl_section_content_body'];
         $contents['image'] = $item['field_nl_section_content_image'];
         $contents['column_class'] = $column_class;

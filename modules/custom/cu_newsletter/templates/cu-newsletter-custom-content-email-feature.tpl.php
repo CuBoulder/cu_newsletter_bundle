@@ -5,7 +5,11 @@
 ?>
 <div class="article-view-mode-email-feature node-view-mode-email-feature clearfix <?php print $content['column_class']; ?>">
   <?php if(!empty($content['image'])): ?>
-    <?php print render($content['image']); ?>
+    <?php if(!empty($content['link'])): ?>
+      <a href="<?php print $content['link']; ?>"><?php print render($content['image']); ?></a>
+    <?php else: ?>
+      <?php print render($content['image']); ?>
+    <?php endif; ?>
   <?php endif; ?>
   <div class="article-view-mode-email-feature-content node-view-mode-email-feature-content">
     <h3><?php print render($content['title']); ?></h3>
