@@ -1,11 +1,15 @@
+<?php
+  if (!$column_classes) {
+    $column_classes = array(
+      'main' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+      'sidebar' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+    );
+  }
+?>
+
 <div class="newsletter-wrapper row clearfix">
 
-  <div class="newsletter-main <?php print $column_classes['main']; ?>">
-    <?php if ($email_version_link): ?>
-      <p>
-        <?php print $email_version_link; ?>
-      </p>
-    <?php endif; ?>
+  <div class="newsletter-main <?php print($column_classes['main']) ?>">
     <?php
       if (!empty($content['field_newsletter_intro_image'])): ?>
       <div class="newsletter-hero">
