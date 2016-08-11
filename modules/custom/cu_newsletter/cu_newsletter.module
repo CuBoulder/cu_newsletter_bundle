@@ -296,7 +296,9 @@ function cu_newsletter_image_default_styles() {
  */
 function cu_newsletter_node_insert($node) {
   // _cu_newsletter_publish_nodes($node);
-  drupal_goto('admin/newsletter/publish/confirm/' . $node->nid);
+  if ($node->type == 'newsletter') {
+    drupal_goto('admin/newsletter/publish/confirm/' . $node->nid);
+  }
 }
 
 /**
@@ -497,7 +499,7 @@ function cu_newsletter_form_newsletter_node_form_alter(&$form, &$form_state, $fo
  *
  * Send user to cu_newsletter_publish_confirm_form if published.
  */
-function cu_newsletter_publish_confirm($form, &$form_state, $node) {
+function cu_newsletter_publish_confirm($form, &$form_state) {
   if ($form_state['values']['status'] == 1 && isset($form_state['values']['nid'])) {
     drupal_goto('admin/newsletter/publish/confirm/' . $form_state['values']['nid']);
   }
@@ -553,7 +555,6 @@ function cu_newsletter_publish_confirm_unpublish($form, &$form_state) {
 function cu_newsletter_archive_page($newsletter_path) {
   $output = array();
   $term = cu_newsletter_load_by_path($newsletter_path);
-  // $term = taxonomy_term_load($term->tid);
 
   $query = db_select('node', 'n');
   $query = $query->extend('PagerDefault')->limit(10);
