@@ -10,7 +10,11 @@
         <tr>
           <td class="text-pad">
             <?php if(!empty($content['image'])): ?>
-              <?php print render($content['image']); ?>
+              <?php if(!empty($content['link'])): ?>
+                <a href="<?php print $content['link']; ?>"><?php print render($content['image']); ?></a>
+              <?php else: ?>
+                <?php print render($content['image']); ?>
+              <?php endif; ?>
             <?php endif; ?>
             <div class="content-padding">
               <h3 class="feature-title"><?php print render($content['title']); ?></h3>

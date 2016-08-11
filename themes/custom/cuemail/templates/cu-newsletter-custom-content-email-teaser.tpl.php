@@ -10,7 +10,11 @@
         <tr>
           <?php if (!empty($content['image'])): ?>
           <td class="three sub-columns text-pad">
-            <?php print render($content['image']); ?>
+            <?php if(!empty($content['link'])): ?>
+              <a href="<?php print $content['link']; ?>"><?php print render($content['image']); ?></a>
+            <?php else: ?>
+              <?php print render($content['image']); ?>
+            <?php endif; ?>
           </td>
           <td class="nine sub-columns text-pad">
           <?php else: ?>
