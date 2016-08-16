@@ -168,7 +168,9 @@
                                 ?>
                             </div>
                           <?php endif; ?>
-                          <custom name="opencounter" type="tracking">
+                          <div class="open-counter">
+                            <custom name="opencounter" type="tracking">
+                          </div>
                         </td>
                       </tr>
                     </table>
