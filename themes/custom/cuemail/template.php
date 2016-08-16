@@ -85,11 +85,13 @@ function cuemail_preprocess_node(&$vars) {
       foreach ($terms as $term) {
         if (isset($term->name)) {
           $tag = $term->name;
-          if (!empty($term->field_category_term_page_link)) {
-            $new_tags[] = l($tag, $term->field_category_term_page_link[LANGUAGE_NONE][0]['url'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => FALSE));
-          }
-          else {
-            $new_tags[] = $tag;
+          if ($term->field_category_display[LANGUAGE_NONE][0]['value'] == 'show') {
+            if (!empty($term->field_category_term_page_link)) {
+              $new_tags[] = l($tag, $term->field_category_term_page_link[LANGUAGE_NONE][0]['url'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => FALSE));
+            }
+            else {
+              $new_tags[] = $tag;
+            }
           }
         }
       }
