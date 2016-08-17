@@ -57,6 +57,13 @@ function cuemail_preprocess_node(&$vars) {
         $list[] = $node->title;
       }
     }
+    $newsletter_logo_image_style_uri = image_style_path('medium', $vars['newsletter_logo_uri']);
+    if (!file_exists($newsletter_logo_image_style_uri)) {
+      image_style_create_derivative(image_style_load('medium'), $vars['newsletter_logo_uri'], $newsletter_logo_image_style_uri);
+    }
+    $image_info = image_get_info($newsletter_logo_image_style_uri);
+    $vars['newsletter_logo_width'] = round($image_info['width'] * .46333);
+    $vars['newsletter_logo_height'] = round($image_info['height'] * .46333);
     $vars['content']['list'] = theme('item_list', array(
       'items' => $list,
       'type' => 'ul',
