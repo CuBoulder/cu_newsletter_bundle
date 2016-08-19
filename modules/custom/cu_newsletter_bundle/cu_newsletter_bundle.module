@@ -15,6 +15,10 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
+      'create any newsletter_list bean',
+      'delete any newsletter_list bean',
+      'edit any newsletter_list bean',
+      'view any newsletter_list bean',
     ),
     'content_editor' => array(
       'create newsletter content',
@@ -22,6 +26,10 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
+      'create any newsletter_list bean',
+      'delete any newsletter_list bean',
+      'edit any newsletter_list bean',
+      'view any newsletter_list bean',
     ),
     'developer' => array(
       'create newsletter content',
@@ -29,6 +37,10 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
+      'create any newsletter_list bean',
+      'delete any newsletter_list bean',
+      'edit any newsletter_list bean',
+      'view any newsletter_list bean',
     ),
     'site_owner' => array(
       'create newsletter content',
@@ -36,6 +48,16 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'delete own newsletter content',
       'edit any newsletter content',
       'edit own newsletter content',
+      'create any newsletter_list bean',
+      'delete any newsletter_list bean',
+      'edit any newsletter_list bean',
+      'view any newsletter_list bean',
+    ),
+    'anonymous user' => array(
+      'view any newsletter_list bean',
+    ),
+    'authenticated user' => array(
+      'view any newsletter_list bean',
     ),
   );
   if (isset($permissions[$role])) {
@@ -61,6 +83,6 @@ function cu_newsletter_bundle_express_node_list_groups($bundles) {
 function cu_newsletter_bundle_express_bean_list_groups($bundles) {
 
   $bundles['news']['types'][] = 'Newsletter List';
-  
+
   return $bundles;
 }
