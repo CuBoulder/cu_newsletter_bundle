@@ -323,8 +323,14 @@ function _cu_newsletter_publish_nodes($nid) {
     foreach ($node->field_newsletter_section[LANGUAGE_NONE] as $item) {
       $item = entity_load('field_collection_item', array($item['value']));
       $item = current($item);
-      foreach ($item->field_newsletter_articles[LANGUAGE_NONE] as $article) {
-        $nids[] = $article['target_id'];
+      foreach ($item->field_newsletter_section_content[LANGUAGE_NONE] as $content) {
+        // Load the field_newsletter_section_content field collection
+        // Look to see if there is an article reference and add to array
+        $content = entity_load('field_collection_item', array($content['value']));
+        $content = current($content);
+        if (!empty($content->field_newsletter_articles)) {
+          $nids[] = $content->field_newsletter_articles[LANGUAGE_NONE][0]['target_id'];
+        }
       }
     }
     foreach ($nids as $nid) {
