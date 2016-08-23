@@ -108,3 +108,5 @@ ul { padding-left: 17px; }
 .article-list-content { padding: 10px; }
 
 .newsletter-footer p { font-size: 12px; }
+
+.open-counter img { width: 1px !important; height: 1px !important; }
