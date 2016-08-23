@@ -9,13 +9,14 @@ div.emailteaser {
   overflow: hidden !important;
 }
 
-img {
+.container img {
   display: block;
   height:auto !important;
   max-height:auto !important;
   width:100% !important;
   max-width: 600px !important;
 }
+
 img.image-email_teaser_thumbnail,
 img[class="image-email_teaser_thumbnail"] {
   display: block;
