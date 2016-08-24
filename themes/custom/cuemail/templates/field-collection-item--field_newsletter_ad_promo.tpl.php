@@ -1,6 +1,12 @@
 <?php
-$url = $content['field_newsletter_ad_link'][0]['#element']['url'];
-$img = render($content['field_newsletter_ad_image']);
-$linked_ad = l($img, $url, array('html' => TRUE));
+  $img = render($content['field_newsletter_ad_image']);
+
+  if (!empty($content['field_newsletter_ad_link'])) {
+    $url = $content['field_newsletter_ad_link'][0]['#element']['url'];
+    $ad = l($img, $url, array('html' => TRUE));
+  }
+  else {
+    $ad = $img;
+  }
 ?>
-<?php print $linked_ad; ?>
+<?php print $ad; ?>

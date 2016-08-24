@@ -157,9 +157,11 @@ function cu_newsletter_preprocess_node(&$vars) {
     foreach ($sections as $section) {
       $section_item = $section['entity']['field_collection_item'];
       $section_item = current($section_item);
-      foreach ($section_item['field_newsletter_articles']['#items'] as $reference) {
-        $nid = $reference['target_id'];
-        $articles[$nid] = $nid;
+      if (!empty($section_item['field_newsletter_articles']['#items'])) {
+        foreach ($section_item['field_newsletter_articles']['#items'] as $reference) {
+          $nid = $reference['target_id'];
+          $articles[$nid] = $nid;
+        }
       }
     }
     // Get node titles
@@ -219,8 +221,8 @@ function cu_newsletter_preprocess_entity(&$vars) {
         $contents = array();
         $contents['title'] = $item['field_nl_section_content_title'];
         $contents['link'] = $item['field_nl_section_content_title']['#items'][0]['url'];
-        $contents['body'] = $item['field_nl_section_content_body'];
-        $contents['image'] = $item['field_nl_section_content_image'];
+        $contents['body'] = !empty($item['field_nl_section_content_body']) ? $item['field_nl_section_content_body'] : NULL;
+        $contents['image'] = !empty($item['field_nl_section_content_image']) ? $item['field_nl_section_content_image'] : NULL;
         $contents['column_class'] = $column_class;
         if ($view_mode == 'email_feature') {
           $vars['content']['newsletter_content'][]['#markup'] = theme('cu_newsletter_custom_content_email_feature', array('content' => $contents));
