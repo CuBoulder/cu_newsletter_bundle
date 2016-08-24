@@ -20,6 +20,7 @@ p.field-name-field-newsletter-more-link { font-weight: 600; margin-bottom: 40px;
 p.field-name-field-newsletter-more-link a:before { font-family: "FontAwesome"; content: "\f061"; padding-right: 8px; }
 
 .newsletter-text-block h2.field-name-field-newsletter-block-title { font-size: 130%; }
+.newsletter-text-block .field-name-field-newsletter-block-body h2 { font-size: 130%; }
 .newsletter-text-block .field-name-field-newsletter-block-body h3 { font-size: 120%; }
 .newsletter-text-block .field-name-field-newsletter-block-body h4 { font-size: 110%; }
 .newsletter-text-block .field-name-field-newsletter-block-body h5 { font-size: 105%; }
@@ -42,3 +43,9 @@ p.field-name-field-newsletter-more-link a:before { font-family: "FontAwesome"; c
 ul.primary li a.email-version:before { content: "\f0e0"; }
 
 ul.tabs--primary li a.email-version:before { content: "\f0e0"; }
+
+/* Custom content */
+.view-mode-custom-content-content h2, .view-mode-custom-content-content h3 { font-size: 110%; }
+.view-mode-custom-content-content h4 { font-size: 106%; }
+.view-mode-custom-content-content h5 { font-size: 104%; }
+.view-mode-custom-content-content h6 { font-size: 100%; }

@@ -89,6 +89,9 @@ p.field-name-field-newsletter-more-link {
     font-size: 130%;
   }
   .field-name-field-newsletter-block-body {
+    h2 {
+      font-size: 130%;
+    }
     h3 {
       font-size: 120%;
     }
@@ -140,4 +143,20 @@ ul.primary li a.email-version:before {
 }
 ul.tabs--primary li a.email-version:before {
   content: "\f0e0";
+}
+
+/* Custom content */
+.view-mode-custom-content-content {
+  h2, h3 {
+    font-size:110%;
+  }
+  h4 {
+    font-size:106%;
+  }
+  h5 {
+    font-size:104%;
+  }
+  h6 {
+    font-size:100%;
+  }
 }
