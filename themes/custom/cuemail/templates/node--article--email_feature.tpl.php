@@ -13,7 +13,7 @@
             <div class="content-padding">
               <h3 class="feature-title"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
               <div class="tags">
-                <?php print render($content['field_article_categories']); ?>
+                <?php print $category_teaser_category_links; ?>
               </div>
               <?php print render($content['body']); ?>
 

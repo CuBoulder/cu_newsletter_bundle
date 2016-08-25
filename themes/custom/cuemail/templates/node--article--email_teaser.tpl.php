@@ -16,7 +16,7 @@
           <?php endif; ?>
             <h3 class="teaser-title"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
             <div class="tags">
-              <?php print render($content['field_article_categories']); ?>
+              <?php print $category_teaser_category_links; ?>
             </div>
             <?php print render($content['body']); ?>
 
