@@ -38,7 +38,7 @@
                             </td>
                           <?php endif; ?>
                           <td class="newsletter-logo">
-                            <img src="<?php print $path; ?>/images/<?php print cuemail_logo_color($design); ?>" alt="University of Colorado Boulder " id="logo" />
+                            <img src="<?php print $path; ?>/images/<?php print cuemail_logo_color($design); ?>" alt="University of Colorado Boulder " id="logo" width="212" height="32" />
                           </td>
                         </tr>
                       </table>
