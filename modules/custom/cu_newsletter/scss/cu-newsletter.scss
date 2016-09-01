@@ -160,3 +160,12 @@ ul.tabs--primary li a.email-version:before {
     font-size:100%;
   }
 }
+
+.newsletter-section-wrapper,
+.newsletter-text-blocks {
+  .col-lg-6:nth-child(2n+1),
+  .col-md-6:nth-child(2n+1),
+  .col-sm-6:nth-child(2n+1) {
+    clear:left;
+  }
+}

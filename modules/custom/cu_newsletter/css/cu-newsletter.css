@@ -49,3 +49,5 @@ ul.tabs--primary li a.email-version:before { content: "\f0e0"; }
 .view-mode-custom-content-content h4 { font-size: 106%; }
 .view-mode-custom-content-content h5 { font-size: 104%; }
 .view-mode-custom-content-content h6 { font-size: 100%; }
+
+.newsletter-section-wrapper .col-lg-6:nth-child(2n+1), .newsletter-section-wrapper .col-md-6:nth-child(2n+1), .newsletter-section-wrapper .col-sm-6:nth-child(2n+1), .newsletter-text-blocks .col-lg-6:nth-child(2n+1), .newsletter-text-blocks .col-md-6:nth-child(2n+1), .newsletter-text-blocks .col-sm-6:nth-child(2n+1) { clear: left; }
