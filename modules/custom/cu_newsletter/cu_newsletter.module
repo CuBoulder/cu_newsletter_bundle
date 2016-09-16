@@ -571,6 +571,7 @@ function cu_newsletter_archive_page($newsletter_path) {
   $term = cu_newsletter_load_by_path($newsletter_path);
 
   $query = db_select('node', 'n');
+  $query->orderBy('created', 'DESC');
   $query = $query->extend('PagerDefault')->limit(10);
   $query->condition('n.type', 'newsletter', '=');
   $query->condition('n.status', 1, '=');
