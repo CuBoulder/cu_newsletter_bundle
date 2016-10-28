@@ -136,5 +136,6 @@ function cuemail_logo_color($design = 'design-01') {
   $logos['design-02'] = 'logo-white-2x.gif';
   $logos['design-03'] = 'logo-white-2x.gif';
   $logos['design-04'] = 'logo-black-2x.gif';
+  $logos['design-05'] = 'logo-black-2x.gif';
   return $logos[$design];
 }
