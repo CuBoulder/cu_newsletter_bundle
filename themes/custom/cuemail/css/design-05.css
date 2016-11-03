@@ -51,6 +51,7 @@ td.web-link a:hover { color: #ffffff !important; }
 .footer-content a { color: #cfb87c !important; }
 
 .footer-content a:hover { color: #cfb87c !important; }
+.footer-content a:hover:link, .footer-content a:hover:visited, .footer-content a:hover:hover, .footer-content a:hover:active { color: #cfb87c !important; }
 
 .hero-image .content-padding { padding: 20px 0px 0px; }
 .hero-image .content-padding .intro-text { padding: 0 10px; }

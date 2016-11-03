@@ -98,6 +98,12 @@ td.web-link a:hover {
 .footer-content a {
   // Design
   color:$gold !important;
+	&:link,
+	&:visited,
+	&:hover,
+	&:active {
+		color:$gold !important;
+	}
 }
 .footer-content a:hover {
   // Design
