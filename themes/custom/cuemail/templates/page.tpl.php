@@ -42,6 +42,7 @@
   $email = $cssToInlineStyles->convert();
   $email = str_replace('src="https://', 'src="http://', $email);
   $email = str_replace('src="//', 'src="http://', $email);
+  $email = str_replace('href="//', 'href="http://', $email);
 
   //$email = str_replace('—', '&mdash;', $email);
   //First convert the special characters to HTML-Entities using a multi-byte safe function

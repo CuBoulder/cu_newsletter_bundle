@@ -494,6 +494,7 @@ function cu_newsletter_design_options() {
     'design-02' => 'Minimal',
     'design-03' => 'Light Boxed',
     'design-04' => 'Dark Boxed',
+    'design-05' => 'Simple',
   );
   return $options;
 }
