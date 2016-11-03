@@ -105,6 +105,12 @@ td.email-top {
 .footer-content a {
   // Design
   color:$gold !important;
+	&:link,
+	&:visited,
+	&:hover,
+	&:active {
+		color:$gold !important;
+	}
 }
 .footer-content a:hover {
   // Design

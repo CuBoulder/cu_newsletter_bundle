@@ -102,6 +102,12 @@ td.web-link a:hover {
 .footer-content a {
   // Design
   color:$link !important;
+	&:link,
+	&:visited,
+	&:hover,
+	&:active {
+		color:$link !important;
+	}
 }
 .footer-content a:hover {
   // Design

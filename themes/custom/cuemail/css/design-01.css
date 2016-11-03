@@ -53,5 +53,6 @@ td.email-top { padding: 0 0 20px; }
 .footer-content p { color: #FFFFFF; }
 
 .footer-content a { color: #cfb87c !important; }
+.footer-content a:link, .footer-content a:visited, .footer-content a:hover, .footer-content a:active { color: #cfb87c !important; }
 
 .footer-content a:hover { color: #cfb87c !important; }
