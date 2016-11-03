@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Implements hook_enable().
+ * Implements hook_install().
  *
  * Update email view mode settings of article fields.
  */
-function cu_newsletter_enable() {
+function cu_newsletter_install() {
   // Enable email theme
   $hidden_themes = variable_get('express_theme_picker_theme_ignore', array());
   $hidden_themes['cuemail'] = 1;
