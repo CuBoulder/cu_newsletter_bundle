@@ -32,7 +32,11 @@ td.issue-date {
 }
 td.web-link a {
   // Design
-  color:#cccccc !important;
+  color:#cccccc;
+	&:visited,
+	&:active {
+		color:#cccccc !important;
+	}
 }
 td.web-link a:hover {
   // Design
@@ -104,15 +108,14 @@ td.email-top {
 }
 .footer-content a {
   // Design
-  color:$gold !important;
+  color:$gold;
 	&:link,
 	&:visited,
-	&:hover,
 	&:active {
 		color:$gold !important;
 	}
 }
 .footer-content a:hover {
   // Design
-  color:$gold !important;
+  color:#FFFFFF !important;
 }
