@@ -97,8 +97,8 @@ div.tags a, div.tags a:link, div.tags a:visited { background-color: #e7e7e7 !imp
 div.tags a:active, div.tags a:hover { color: #cfb87c !important; background-color: #000000 !important; border-color: black; }
 
 /* Article More Link */
-a.button, p.field-name-field-newsletter-more-link a { background-color: #007bc8 !important; color: #FFFFFF; display: inline-block; font-weight: bold; text-align: center; border-color: #007bc8; border-style: solid; border-top-width: 5px; border-bottom-width: 5px; border-left-width: 10px; border-right-width: 10px; }
-a.button:visited, p.field-name-field-newsletter-more-link a:visited { color: #FFFFFF !important; }
+a.button, p.field-name-field-newsletter-more-link a { background-color: #007bc8; color: #FFFFFF; display: inline-block; font-weight: bold; text-align: center; border-color: #007bc8; border-style: solid; border-top-width: 5px; border-bottom-width: 5px; border-left-width: 10px; border-right-width: 10px; }
+a.button:visited, p.field-name-field-newsletter-more-link a:visited { color: #FFFFFF !important; background-color: #007bc8 !important; }
 
 a.button-full { display: block !important; }
 

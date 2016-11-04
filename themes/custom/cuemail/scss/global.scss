@@ -296,7 +296,7 @@ div.tags a:hover {
 /* Article More Link */
 a.button,
 p.field-name-field-newsletter-more-link a {
-  background-color:$blue !important;
+  background-color:$blue;
   color:#FFFFFF;
   display:inline-block;
   //padding:5px 10px !important;
@@ -310,6 +310,7 @@ p.field-name-field-newsletter-more-link a {
   border-right-width: 10px;
   &:visited {
     color: #FFFFFF !important;
+    background-color:$blue !important;
   }
 }
 a.button-full {
