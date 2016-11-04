@@ -308,21 +308,25 @@ p.field-name-field-newsletter-more-link a {
   border-bottom-width: 5px;
   border-left-width: 10px;
   border-right-width: 10px;
+  &:visited {
+    color: #FFFFFF !important;
+  }
 }
 a.button-full {
   display:block !important;
 }
-a.button:visited,
 a.button:hover,
 a.button:active,
-a.button:focus {
+a.button:focus,
+p.field-name-field-newsletter-more-link a:hover,
+p.field-name-field-newsletter-more-link a:active,
+p.field-name-field-newsletter-more-link a:focus {
   color:#FFFFFF !important;
   background-color:#222222 !important;
   border-color: #222222;
 
 }
-a.button-large,
-p.field-name-field-newsletter-more-link a.button {
+a.button-large {
   font-size:16px !important;
   //padding:10px 10px !important;
   border-color: $blue;
