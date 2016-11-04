@@ -1,6 +1,6 @@
 <?php
   if (!empty($content['image'])) {
-    $content['image'][0]['#image_style'] = 'email_feature_thumbnail_large';
+    $content['image'][0]['#image_style'] = 'email_feature_thumbnail';
   }
 ?>
 <table class="row article-content">
