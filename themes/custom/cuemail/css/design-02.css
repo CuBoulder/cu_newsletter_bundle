@@ -15,7 +15,8 @@ body, table.body { background-color: #FFFFFF; }
 
 td.issue-date { color: #757575; }
 
-td.web-link a { color: #757575 !important; }
+td.web-link a { color: #757575; }
+td.web-link a:link, td.web-link a:visited, td.web-link a:active { color: #757575 !important; }
 
 td.web-link a:hover { color: #000000 !important; }
 
@@ -50,7 +51,7 @@ td.web-link a:hover { color: #000000 !important; }
 
 .footer-content p { color: #000000; }
 
-.footer-content a { color: #007bc8 !important; }
-.footer-content a:link, .footer-content a:visited, .footer-content a:hover, .footer-content a:active { color: #007bc8 !important; }
+.footer-content a { color: #007bc8; }
+.footer-content a:link, .footer-content a:visited, .footer-content a:active { color: #007bc8 !important; }
 
 .footer-content a:hover { color: #007bc8 !important; }

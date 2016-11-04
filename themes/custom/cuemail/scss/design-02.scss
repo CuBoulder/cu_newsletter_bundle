@@ -32,7 +32,12 @@ td.issue-date {
 }
 td.web-link a {
   // Design
-  color:#757575 !important;
+  color:#757575;
+	&:link,
+	&:visited,
+	&:active {
+		color: #757575 !important;
+	}
 }
 td.web-link a:hover {
   // Design
@@ -101,10 +106,9 @@ td.web-link a:hover {
 }
 .footer-content a {
   // Design
-  color:$link !important;
+  color:$link;
 	&:link,
 	&:visited,
-	&:hover,
 	&:active {
 		color:$link !important;
 	}

@@ -15,7 +15,8 @@ body, table.body { background-color: #f2f2f2; }
 
 td.issue-date { color: #cccccc; }
 
-td.web-link a { color: #cccccc !important; }
+td.web-link a { color: #cccccc; }
+td.web-link a:visited, td.web-link a:active { color: #cccccc !important; }
 
 td.web-link a:hover { color: #ffffff !important; }
 
@@ -52,7 +53,7 @@ td.email-top { padding: 0 0 20px; }
 
 .footer-content p { color: #FFFFFF; }
 
-.footer-content a { color: #cfb87c !important; }
-.footer-content a:link, .footer-content a:visited, .footer-content a:hover, .footer-content a:active { color: #cfb87c !important; }
+.footer-content a { color: #cfb87c; }
+.footer-content a:link, .footer-content a:visited, .footer-content a:active { color: #cfb87c !important; }
 
-.footer-content a:hover { color: #cfb87c !important; }
+.footer-content a:hover { color: #FFFFFF !important; }

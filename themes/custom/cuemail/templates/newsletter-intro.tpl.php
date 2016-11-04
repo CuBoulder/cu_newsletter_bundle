@@ -3,7 +3,7 @@
     <td class="wrapper last">
       <table class="twelve columns">
         <tr>
-          <td>
+          <td class="text-pad padding-top">
 
 
             <div class="content-padding">
