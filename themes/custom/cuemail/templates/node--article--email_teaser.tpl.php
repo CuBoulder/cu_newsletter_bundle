@@ -15,9 +15,13 @@
           <td class="twelve sub-columns text-pad padding-bottom">
           <?php endif; ?>
             <h3 class="teaser-title"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
-            <div class="tags">
-              <?php print render($content['field_article_categories']); ?>
-            </div>
+            <?php if (!empty($content['field_article_categories'])): ?>
+              <table>
+                <td class="tags">
+                  <?php print render($content['field_article_categories']); ?>
+                </td>
+              </table>
+            <?php endif; ?>
             <?php print render($content['body']); ?>
 
           </td>

@@ -209,7 +209,7 @@ td.web-link a:hover {
   padding-top:10px;
 }
 .padding-bottom {
-  padding-bottom:10px;
+  padding-bottom:20px;
 }
 .article-intro,
 .article-intro td {
@@ -277,12 +277,12 @@ p.lead {
 }
 
 /* Article Categories */
-div.tags {
+td.tags {
   padding:5px 0;
 }
-div.tags a,
-div.tags a:link,
-div.tags a:visited {
+td.tags a,
+td.tags a:link,
+td.tags a:visited {
   background-color:#e7e7e7 !important;
   color:#656565 !important;
   // padding:4px;
@@ -294,8 +294,8 @@ div.tags a:visited {
   font-weight:bold;
   text-transform:uppercase !important;
 }
-div.tags a:active,
-div.tags a:hover {
+td.tags a:active,
+td.tags a:hover {
   color:$gold !important;
   background-color:#000000 !important;
   border-color: #000000
