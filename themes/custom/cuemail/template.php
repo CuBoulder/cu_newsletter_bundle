@@ -124,6 +124,21 @@ function cuemail_image_style(&$vars) {
   $vars['width'] = $dimensions['width'];
   $vars['height'] = $dimensions['height'];
 
+  if ($vars['style_name'] == 'email_medium') {
+    $vars['width'] = 560;
+    $vars['height'] = 280;
+  }
+
+  if ($vars['style_name'] == 'email_ad') {
+    $vars['width'] = 560;
+    $vars['height'] = 280;
+  }
+
+  if ($vars['style_name'] == 'email_feature_thumbnail') {
+    $vars['width'] = 560;
+    $vars['height'] = 261;
+  }
+
   // Determine the url for the styled image.
   $vars['path'] = image_style_url($vars['style_name'], $vars['path']);
   $vars['attributes']['class'] = array('image-' . $vars['style_name']);
