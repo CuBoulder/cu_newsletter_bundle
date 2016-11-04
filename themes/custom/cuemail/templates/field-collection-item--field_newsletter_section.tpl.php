@@ -4,7 +4,7 @@
     <td class="wrapper last">
       <table class="twelve columns">
         <tr>
-          <td class="text-pad">
+          <td class="text-pad padding-bottom">
             <?php print render($content['field_newsletter_section_title']); ?>
           </td>
 
@@ -21,7 +21,7 @@
     <td class="wrapper last">
       <table class="twelve columns">
         <tr>
-          <td class="text-pad">
+          <td class="text-pad padding-bottom">
             <?php print render($content['field_newsletter_more_link']); ?>
           </td>
 

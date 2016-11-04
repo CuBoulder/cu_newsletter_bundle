@@ -157,7 +157,7 @@
                   <td class="wrapper last">
                     <table class="twelve columns">
                       <tr>
-                        <td class="footer-content text-pad">
+                        <td class="footer-content text-pad padding-bottom">
                           <p><strong><a href="<?php print $base_url; ?>"><?php print variable_get('site_name', ''); ?></a></strong></p>
                           <!--
                             <p class="copyright">&copy; Regents of the University of Colorado</p>

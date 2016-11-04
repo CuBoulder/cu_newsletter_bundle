@@ -25,7 +25,11 @@ img[class="image-email_teaser_thumbnail"] {
   width:100% !important;
   max-width: 130px !important;
 }
-
+img.image-email_feature_thumbnail,
+img[class="image-email_feature_thumbnail"] {
+  //margin-bottom: 10px;
+  display:block;
+}
 h1, h2, h3, h4, h5 {
   mso-line-height-rule:exactly;
 }
@@ -173,7 +177,7 @@ td.web-link a:hover {
 /* Hero */
 .intro-image img {
   float: none;
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
   display: block;
 }
 /* Articles */
@@ -192,7 +196,7 @@ td.web-link a:hover {
 .article-content {
   // Design
   // background-color: #FFFFFF;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
 }
 .content-padding {
   clear: both;
@@ -203,6 +207,9 @@ td.web-link a:hover {
 }
 .padding-top {
   padding-top:10px;
+}
+.padding-bottom {
+  padding-bottom:10px;
 }
 .article-intro,
 .article-intro td {

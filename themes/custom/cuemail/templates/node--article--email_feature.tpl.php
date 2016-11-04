@@ -6,9 +6,14 @@
     <td class="wrapper last">
       <table class="twelve columns">
         <tr>
-          <td class="text-pad">
+          <td class="text-pad padding-bottom">
             <?php if(!empty($content['field_article_thumbnail'])): ?>
-              <?php print render($content['field_article_thumbnail']); ?>
+
+              <table>
+                <td class="padding-bottom">
+                  <?php print render($content['field_article_thumbnail']); ?>
+                </td>
+              </table>
             <?php endif; ?>
             <div class="content-padding">
               <h3 class="feature-title"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>

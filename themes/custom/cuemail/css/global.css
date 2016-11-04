@@ -6,6 +6,8 @@ div.emailteaser { font-size: 1px; display: none !important; mso-hide: all; heigh
 
 img.image-email_teaser_thumbnail, img[class="image-email_teaser_thumbnail"] { display: block; height: auto !important; max-height: 130px !important; width: 100% !important; max-width: 130px !important; }
 
+img.image-email_feature_thumbnail, img[class="image-email_feature_thumbnail"] { display: block; }
+
 h1, h2, h3, h4, h5 { mso-line-height-rule: exactly; }
 
 a { color: #007bc8; text-decoration: none; }
@@ -54,18 +56,18 @@ td.web-link a { font-size: 11px; }
 .article-list { padding: 10px; }
 
 /* Hero */
-.intro-image img { float: none; margin-bottom: 10px; display: block; }
+.intro-image img { float: none; display: block; }
 
 /* Articles */
 .content-top td.newsletter-sections { padding-top: 10px; }
-
-.article-content { margin-bottom: 20px; }
 
 .content-padding { clear: both; padding: 0px 0; }
 
 .cell-padding { padding: 10px; }
 
 .padding-top { padding-top: 10px; }
+
+.padding-bottom { padding-bottom: 10px; }
 
 .article-intro .content-padding { clear: both; padding: 0px; }
 

@@ -3,12 +3,16 @@
     <td class="wrapper last">
       <table class="twelve columns">
         <tr>
-          <td class="text-pad padding-top">
+          <td class="text-pad padding-top padding-bottom">
 
 
             <div class="content-padding">
               <div class="intro-image">
-                <?php print render($content['field_newsletter_intro_image']); ?>
+                <table>
+                  <td class="padding-bottom">
+                    <?php print render($content['field_newsletter_intro_image']); ?>
+                  </td>
+                </table>
               </div>
               <?php if (!empty($content['body'])): ?>
                 <div class="intro-text">
