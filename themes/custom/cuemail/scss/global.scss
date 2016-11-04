@@ -196,7 +196,13 @@ td.web-link a:hover {
 }
 .content-padding {
   clear: both;
-  padding: 10px 0;
+  padding: 0px 0;
+}
+.cell-padding {
+  padding:10px;
+}
+.padding-top {
+  padding-top:10px;
 }
 .article-intro,
 .article-intro td {
@@ -205,7 +211,7 @@ td.web-link a:hover {
 }
 .article-intro .content-padding {
   clear:both;
-  padding: 10px;
+  padding: 0px;
 }
 h2,
 h2.field-name-field-newsletter-section-title {
@@ -272,7 +278,10 @@ div.tags a:link,
 div.tags a:visited {
   background-color:#e7e7e7 !important;
   color:#656565 !important;
-  padding:4px;
+  // padding:4px;
+  border-color: #656565;
+  border-style: solid;
+  border-width: 4px;
   margin:0 5px 5px 0;
   font-size:10px;
   font-weight:bold;
@@ -280,33 +289,47 @@ div.tags a:visited {
 }
 div.tags a:hover {
   color:$gold !important;
-  background-color:#000 !important;
+  background-color:#000000 !important;
+  border-color: #000000
 }
 /* Article More Link */
 a.button,
-a.button:link,
-a.button:visited,
 p.field-name-field-newsletter-more-link a {
   background-color:$blue !important;
-  color:#FFFFFF !important;
+  color:#FFFFFF;
   display:inline-block;
-  padding:5px 10px;
+  //padding:5px 10px !important;
   font-weight:bold;
   text-align:center;
+  border-color: $blue;
+  border-style: solid;
+  border-top-width: 5px;
+  border-bottom-width: 5px;
+  border-left-width: 10px;
+  border-right-width: 10px;
 }
 a.button-full {
   display:block !important;
 }
+a.button:visited,
 a.button:hover,
 a.button:active,
 a.button:focus {
   color:#FFFFFF !important;
   background-color:#222222 !important;
+  border-color: #222222;
+
 }
 a.button-large,
 p.field-name-field-newsletter-more-link a.button {
   font-size:16px !important;
-  padding:10px 10px !important;
+  //padding:10px 10px !important;
+  border-color: $blue;
+  border-style: solid;
+  border-top-width: 10px;
+  border-bottom-width: 10px;
+  border-left-width: 10px;
+  border-right-width: 10px;
 }
 p.field-name-field-newsletter-more-link a {
 
