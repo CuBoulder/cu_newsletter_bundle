@@ -68,15 +68,6 @@ function cu_newsletter_email_node_theme($node) {
 }
 
 /**
-* Implements hook_custom_theme().
-*/
-function mymodule_custom_theme() {
-  if ((arg(0) == 'node') && (arg(2) == 'email') && (user_access('edit any newsletter content'))) {
-    //return 'emailnewsletter';
-  }
-}
-
-/**
  * Implements hook_page_alter().
  * Add newsletter css
  */
@@ -108,12 +99,6 @@ function cu_newsletter_preprocess_page(&$vars) {
           ),
         );
       }
-
-      $newsletter_name = $vars['node']->field_newsletter_type[LANGUAGE_NONE][0]['taxonomy_term']->name;
-      $newsletter_logo = $vars['node']->field_newsletter_type[LANGUAGE_NONE][0]['taxonomy_term']->field_newsletter_name_image;
-      $newsletter_node_title = $vars['node']->title;
-      $newsletter_title = $newsletter_name . ' - ' . $newsletter_node_title;
-      //drupal_set_title($newsletter_title);
     }
   }
 }
@@ -142,7 +127,7 @@ function cu_newsletter_preprocess_node(&$vars) {
       // Add teaser for email intro
       $newsletter_node = node_load($vars['node']->nid);
       $newsletter = node_view($newsletter_node, 'teaser');
-      $vars['content']['teaser'] = $newsletter['body'];
+      $vars['content']['teaser'] = !empty($newsletter['body']) ? $newsletter['body'] : array();
     }
     else {
       $vars['column_classes'] = array(
@@ -335,27 +320,33 @@ function _cu_newsletter_publish_nodes($nid) {
         }
       }
     }
+    // Chunk modules into groups.
+    $operations = array();
     foreach ($nids as $nid) {
-      $node_reference = node_load($nid);
-      if ($node_reference->status == 0) {
-        $node_reference->status = 1;
-        node_save($node_reference);
-        $message = t('%title is now published',
-          array(
-            '%title' => $node_reference->title,
-          )
-        );
-        drupal_set_message($message);
-      }
+      $operations[] = array('cu_newsletter_publish_batch', array($nid));
     }
+
+    // Set batch operation and redirect to bundles list when done.
+    $batch = array(
+      'title' => t('Publishing attached articles'),
+      'operations' => $operations,
+      'finished' => 'cu_newsletter_publish_batch_finished',
+      'init_message' => t('Initializing...'),
+      'progress_message' => t('Operation @current out of @total.'),
+      'error_message' => t('Articles failed to be published.'),
+    );
+    batch_set($batch);
     $node->status = 1;
     node_save($node);
-    $message = t('%title and all attached articles are now published',
-      array(
-        '%title' => $node->title,
-      )
-    );
-    drupal_set_message($message);
+    batch_process('node/' . $node->nid);
+  }
+}
+
+function cu_newsletter_publish_batch($nid) {
+  $node_reference = node_load($nid);
+  if ($node_reference->status == 0) {
+    $node_reference->status = 1;
+    node_save($node_reference);
   }
 }
 
@@ -364,7 +355,7 @@ function _cu_newsletter_unpublish_nodes($nid) {
   if ($node && ($node->type == 'newsletter')) {
     $node->status = 0;
     node_save($node);
-    $message = t('%title has been set to published',
+    $message = t('%title has been set to unpublished',
       array(
         '%title' => $node->title,
       )
@@ -403,7 +394,8 @@ function cu_newsletter_permission() {
  * Set newsletter image field access to false if user doesn't have permission.
  */
 function cu_newsletter_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id) {
-  if ($form['vocabulary_machine_name']['#value'] == 'newsletter') {
+  // This gets called on the confirm delete page so need to check for that.
+  if ($form['vocabulary_machine_name']['#value'] == 'newsletter' && $form['actions']['submit']['#value'] != 'Delete') {
     if (!user_access('add newsletter logo')) {
       $form['field_newsletter_name_image']['#access'] = FALSE;
     }
@@ -413,26 +405,52 @@ function cu_newsletter_form_taxonomy_form_term_alter(&$form, &$form_state, $form
   }
 }
 /**
- * Validation function to make sure that newsletters do not share the same path.
+ * Validation function to handle existing newsletter checks.
  */
 function cu_newsletter_path_validate(&$form, &$form_state) {
   $path = $form_state['values']['field_newsletter_path'][LANGUAGE_NONE][0]['value'];
-  $tid = $form_state['values']['tid'];
+  // If new term added, tid is null so set to -1 for query which is impossible for an entity to have.
+  $tid = $form_state['values']['tid'] != NULL ? $form_state['values']['tid'] : -1;
+
   // Make sure entered value is converted to be path friendly
   if (module_exists('pathauto')) {
     module_load_include('inc', 'pathauto', 'pathauto');
     $path = pathauto_cleanstring($path);
   }
 
+  // Need to check and see if any Newsletter is using this path so it can't be deleted.
   $query = db_select('field_data_field_newsletter_path', 'path');
+  $query->fields('path', array('field_newsletter_path_value', 'entity_id'));
   $query->condition('path.field_newsletter_path_value', $path, '=');
-  // Make sure the term id assigned to that path is not the term being edited
+  // Make sure the term id assigned to that path is not the term being edited.
   $query->condition('path.entity_id', $tid, '!=');
-  $results = $query->countQuery()->execute()->fetchField();
-  if ($results) {
+  $path_results = $query->execute()->fetchAll();
+  if ($path_results) {
     form_set_error('field_newsletter_path', t('A newsletter with this path already exists.'));
+    // List Newsletters to help user identify where those newsletters are.
+    $problem_newsletters = array();
+    foreach ($path_results as $result) {
+      $problem_newsletters[] = l('node/' . $result->entity_id, 'node/' . $result->entity_id . '/edit');
+    }
+    drupal_set_message(t('Newsletters with path: !newsletter_list.', array('!newsletter_list' => implode(', ', $problem_newsletters))), 'error');
   }
+  // Place formatted path back into form so user can see it.
   $form_state['values']['field_newsletter_path'][LANGUAGE_NONE][0]['value'] = $path;
+
+  // Need to check and see if any Newsletter is using this term so it can't be deleted.
+  $query = db_select('field_data_field_newsletter_type', 'type');
+  $query->fields('type', array('field_newsletter_type_tid', 'entity_id'));
+  $query->condition('type.field_newsletter_type_tid', $form_state['values']['tid'], '=');
+  $term_results = $query->execute()->fetchAll();
+  if ($term_results) {
+    form_set_error('name', t('This term cannot be deleted with existing newsletters.'));
+    // List Newsletters to help user identify where those newsletters are.
+    $problem_newsletters = array();
+    foreach ($term_results as $result) {
+      $problem_newsletters[] = l('node/' . $result->entity_id, 'node/' . $result->entity_id . '/edit');
+    }
+    drupal_set_message(t('Newsletters with name: !newsletter_list.', array('!newsletter_list' => implode(', ', $problem_newsletters))), 'error');
+  }
 }
 
 /**
@@ -503,7 +521,26 @@ function cu_newsletter_design_options() {
  *  Implements hook_form_FORM_ID_alter.
  */
 function cu_newsletter_form_newsletter_node_form_alter(&$form, &$form_state, $form_id) {
+  // Check to see if there are any newsletter type terms.
+  // Display warning if there is no terms.
+  if (count($form['field_newsletter_type'][LANGUAGE_NONE]['#options']) < 2) {
+    $link = l(t('create a newsletter type'), 'admin/structure/taxonomy/newsletter/add', array('query' => array('destination' => 'node/add/newsletter')));
+    $message = "You must first $link before creating a newsletter.";
+    drupal_set_message($message, 'warning');
+  }
+  // Select available term if there is only one term.
+  elseif (count($form['field_newsletter_type'][LANGUAGE_NONE]['#options']) == 2) {
+    $options = $form['field_newsletter_type'][LANGUAGE_NONE]['#options'];
+    $options = array_keys($options);
+    $form['field_newsletter_type'][LANGUAGE_NONE]['#default_value'] = $options[1];
+  }
+  // Add link to add type terms in type field description.
+  $link = l(t('Add a newsletter type'), 'admin/structure/taxonomy/newsletter/add', array('query' => array('destination' => 'node/add/newsletter')));
+  $message = "Select the type of newsletter. $link.";
+  $form['field_newsletter_type'][LANGUAGE_NONE]['#description'] = $message;
+  // Add confirmation on submit.
   $form['#submit'][] = 'cu_newsletter_publish_confirm';
+  drupal_add_js(drupal_get_path('module', 'cu_newsletter') . '/js/cu-newsletter.js');
 
 }
 
@@ -515,9 +552,36 @@ function cu_newsletter_form_newsletter_node_form_alter(&$form, &$form_state, $fo
 function cu_newsletter_publish_confirm($form, &$form_state) {
 
   if ($form_state['values']['status'] == 1 && isset($form_state['values']['nid'])) {
-    $_GET['destination'] = 'admin/newsletter/publish/confirm/' . $form_state['values']['nid'];
-  }
 
+    // Check for unpublished attached articles
+    $articles = array();
+    // Go through each section
+    foreach ($form_state['values']['field_newsletter_section'][LANGUAGE_NONE] as $key => $section) {
+      if (is_int($key)) {
+        foreach ($section['entity']->field_newsletter_section_content[LANGUAGE_NONE] as $article) {
+          if (isset($article['field_newsletter_articles'][LANGUAGE_NONE][0]['target_id'])) {
+            $articles[] = $article['field_newsletter_articles'][LANGUAGE_NONE][0]['target_id'];
+
+          }
+        }
+      }
+    }
+    if (!empty($articles)) {
+      // Query to see if any of these are unpublished
+      $query = db_select('node', 'n');
+      $query->condition('n.type', 'article', '=');
+      $query->condition('n.status', 0, '=');
+      $query->fields('n', array('nid', 'status'));
+      $query->condition('n.nid', $articles, 'in');
+      $result = $query->execute();
+      $rows = $result->rowCount();
+
+      // If there is an unpublished node, send to confirm form
+      if ($rows > 0) {
+        $_GET['destination'] = 'admin/newsletter/publish/confirm/' . $form_state['values']['nid'];
+      }
+    }
+  }
 }
 
 /**
@@ -529,9 +593,9 @@ function cu_newsletter_publish_confirm($form, &$form_state) {
 function cu_newsletter_publish_confirm_form($form, &$form_state, $nid) {
   $form = array();
   $form['message'] = array(
-    '#markup' => 'Do you want to publish the newsletter and its attached articles? <strong>You cannot undo this action.</strong>',
-    '#prefix' => '<p>',
-    '#suffix' => '</p>',
+    '#markup' => '<p class="warning"><strong>This newsletter contains references to unpublished content.</strong></p>',
+    '#prefix' => '<div>',
+    '#suffix' => '</div>',
 
   );
   // Node ID of newsletter
@@ -539,30 +603,36 @@ function cu_newsletter_publish_confirm_form($form, &$form_state, $nid) {
     '#type' => 'hidden',
     '#value' => $nid,
   );
-  $form['publish'] = array(
-    '#type' => 'submit',
-    '#value' => 'Publish',
-    '#description' => 'Publish the newsletter and the attached articles',
-    '#submit' => array('cu_newsletter_publish_confirm_submit'),
-    '#attributes' => array('class' => array('btn-success')),
+  $form['newsletter_publishing_options'] = array(
+    '#type' => 'radios',
+    '#options' => array(
+      '0' => t('Save newsletter as unpublished and keep attached articles in their current state'),
+      '1' => t('Publish the newsletter and the attached articles'),
+    ),
+    '#default_value' => '1',
+    '#prefix' => '<p>',
+    '#suffix' => '</p>',
   );
-  $form['unpublish'] = array(
+  $form['newsletter_publish_submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Cancel and unpublish newsletter',
-    '#submit' => array('cu_newsletter_publish_confirm_unpublish'),
+    '#value' => 'Save',
+    '#submit' => array('cu_newsletter_publish_submit'),
+    '#attributes' => array('class' => array('btn-success')),
   );
   return $form;
 }
 
-function cu_newsletter_publish_confirm_submit($form, &$form_state) {
-  _cu_newsletter_publish_nodes($form_state['values']['nid']);
-  drupal_goto('node/' . $form_state['values']['nid']);
+function cu_newsletter_publish_submit($form, &$form_state) {
+  if ($form_state['values']['newsletter_publishing_options']) {
+    _cu_newsletter_publish_nodes($form_state['values']['nid']);
+    drupal_goto('node/' . $form_state['values']['nid']);
+  }
+  else {
+    _cu_newsletter_unpublish_nodes($form_state['values']['nid']);
+    drupal_goto('node/' . $form_state['values']['nid']);
+  }
 }
 
-function cu_newsletter_publish_confirm_unpublish($form, &$form_state) {
-  _cu_newsletter_unpublish_nodes($form_state['values']['nid']);
-  drupal_goto('node/' . $form_state['values']['nid']);
-}
 
 /**
  * Page callback function for newsletter/%.
@@ -599,10 +669,15 @@ function cu_newsletter_archive_page($newsletter_path) {
  * Title callback function for newsletter/%.
  */
 function cu_newsletter_archive_page_title($newsletter_path) {
-  $term = cu_newsletter_load_by_path($newsletter_path);
-  $term = taxonomy_term_load($term->tid);
-  $output = $term->name . ' Archive';
-  return $output;
+  // This gets called when adding a term via admin/structure/taxonomy/newsletter/add.
+  // Not sure why that is, but to skip PHP notice, need to check for request path.
+  if (current_path() != 'admin/structure/taxonomy/newsletter/add') {
+    $term = cu_newsletter_load_by_path($newsletter_path);
+    $term = taxonomy_term_load($term->tid);
+    $output = $term->name . ' Archive';
+    return $output;
+  }
+
 }
 
 /**
