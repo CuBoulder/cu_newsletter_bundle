@@ -139,6 +139,7 @@ function cu_newsletter_preprocess_node(&$vars) {
       if (!empty($vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_footer)) {
         $vars['content']['field_newsletter_footer'] = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_footer[LANGUAGE_NONE][0]['value'];
       }
+
       // Add teaser for email intro
       $newsletter_node = node_load($vars['node']->nid);
       $newsletter = node_view($newsletter_node, 'teaser');
@@ -149,6 +150,24 @@ function cu_newsletter_preprocess_node(&$vars) {
         'main' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
         'sidebar' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
       );
+    }
+    // Social Links
+    if (!empty($vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_social_links)) {
+      global $base_url;
+      $social = $vars['field_newsletter_type'][0]['taxonomy_term']->field_newsletter_social_links[LANGUAGE_NONE][0]['target_id'];
+      $social = bean_load($social);
+      $links = array();
+      foreach ($social->field_social_links_collection[LANGUAGE_NONE] as $social_link) {
+        $links[] = field_collection_item_load($social_link['value']);
+      }
+      $social_links = array();
+      foreach ($links as $link) {
+        $type = $link->field_social_link_type[LANGUAGE_NONE][0]['value'];
+        $url = $link->field_social_link_url[LANGUAGE_NONE][0]['url'];
+        $img_path = $base_url . '/' . drupal_get_path('module', 'cu_newsletter') . '/images/social/' . $type . '.gif';
+        $social_links[] = l('<img src="' . $img_path . '" alt="' . $type . '" width="24" height="24" class="newsletter-social-icon">', $url, array('html' => TRUE));
+      }
+      $vars['social_links'] = join(' ', $social_links);
     }
 
     // Get sections and attached articles
