@@ -1,6 +1,6 @@
 .newsletter-intro { border-bottom: 1px solid #e7e7e7; padding-bottom: 20px; margin-bottom: 20px; }
 
-.newsletter-hero img { max-width: 100%; height: auto; }
+.newsletter-hero img { max-width: 100%; height: auto; margin-bottom: 20px; }
 
 .newsletter-intro p:last-child { margin-bottom: 0; }
 
