@@ -1269,6 +1269,50 @@ function cu_newsletter_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'taxonomy_term-newsletter-field_newsletter_social_links'.
+  $field_instances['taxonomy_term-newsletter-field_newsletter_social_links'] = array(
+    'bundle' => 'newsletter',
+    'deleted' => 0,
+    'description' => 'Display a set of social icons at the bottom of your email.  This will only display the icons horizontally.  Other content will not display from the social links block will not display. Requires the Social Media bundle.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'fences_wrapper' => 'no_wrapper',
+    'field_name' => 'field_newsletter_social_links',
+    'label' => 'Social Links',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_clone' => 0,
+          'allow_existing' => 1,
+          'allow_new' => 1,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form',
+      'weight' => 31,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Ad/Promo');
@@ -1278,6 +1322,7 @@ function cu_newsletter_field_default_field_instances() {
   t('Choose how articles in this section should display.');
   t('Design');
   t('Display');
+  t('Display a set of social icons at the bottom of your email.  This will only display the icons horizontally.  Other content will not display from the social links block will not display. Requires the Social Media bundle.');
   t('E-mail Footer');
   t('Image');
   t('Intro Image');
@@ -1291,6 +1336,7 @@ function cu_newsletter_field_default_field_instances() {
   t('Section');
   t('Section Contents');
   t('Section Title');
+  t('Social Links');
   t('Text Block');
   t('This text is displayed at the bottom of the <strong>email</strong> version of a newsletter.');
   t('Title');
