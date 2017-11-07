@@ -1,5 +1,5 @@
 <?php
-  if (!$column_classes) {
+  if (empty($column_classes)) {
     $column_classes = array(
       'main' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
       'sidebar' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
