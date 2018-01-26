@@ -155,13 +155,16 @@ function cu_newsletter_preprocess_node(&$vars) {
     $articles = array();
     $sections = array_intersect_key($vars['elements']['field_newsletter_section'], element_children($vars['elements']['field_newsletter_section']));
     foreach ($sections as $section) {
+
       $section_item = $section['entity']['field_collection_item'];
       $section_item = current($section_item);
       if (!empty($section_item['field_newsletter_articles']['#items'])) {
         foreach ($section_item['field_newsletter_articles']['#items'] as $reference) {
-          $nid = $reference['target_id'];
+
+          $nid = $reference['value'];
           $articles[$nid] = $nid;
         }
+
       }
     }
     // Get node titles
@@ -211,6 +214,15 @@ function cu_newsletter_preprocess_entity(&$vars) {
       // If this contains article references, do those.
       if (!empty($item['field_newsletter_articles'][0]['#markup'])) {
         $nid = $item['field_newsletter_articles'][0]['#markup'];
+        $node = node_load($nid);
+        $vars['content']['newsletter_content'][$nid] = node_view($node, $view_mode);
+
+        $vars['content']['newsletter_content'][$nid]['#column_class'] = $column_class;
+      }
+      // Changes to entity reference changed the array structure.
+      // Adding an else to allow us to deploy this code separately.
+      elseif (!empty($item['field_newsletter_articles'][0]['#item']['target_id'])) {
+        $nid = $item['field_newsletter_articles'][0]['#item']['target_id'];
         $node = node_load($nid);
         $vars['content']['newsletter_content'][$nid] = node_view($node, $view_mode);
 
