@@ -492,6 +492,20 @@ function cu_newsletter_secure_permissions($role) {
       'edit own newsletter content',
       'administer newsletter vocabulary terms',
     ),
+    'edit_my_content' => array(
+      'edit own newsletter content',
+    ),
+    'edit_only' => array(
+      'edit any newsletter content',
+    ),
+    'site_editor' => array(
+      'create newsletter content',
+      'delete any newsletter content',
+      'delete own newsletter content',
+      'edit any newsletter content',
+      'edit own newsletter content',
+      'administer newsletter vocabulary terms',
+    ),
     'site_owner' => array(
       'create newsletter content',
       'delete any newsletter content',

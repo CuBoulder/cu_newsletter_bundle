@@ -42,6 +42,26 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'edit any newsletter_list bean',
       'view any newsletter_list bean',
     ),
+    'edit_my_content' => array(
+      'edit own newsletter content',
+      'view any newsletter_list bean',
+    ),
+    'edit_only' => array(
+      'edit any newsletter content',
+      'edit any newsletter_list bean',
+      'view any newsletter_list bean',
+    ),
+    'site_editor' => array(
+      'create newsletter content',
+      'delete any newsletter content',
+      'delete own newsletter content',
+      'edit any newsletter content',
+      'edit own newsletter content',
+      'create any newsletter_list bean',
+      'delete any newsletter_list bean',
+      'edit any newsletter_list bean',
+      'view any newsletter_list bean',
+    ),
     'site_owner' => array(
       'create newsletter content',
       'delete any newsletter content',
