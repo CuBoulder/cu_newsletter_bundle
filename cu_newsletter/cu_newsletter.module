@@ -454,59 +454,6 @@ function cu_newsletter_path_validate(&$form, &$form_state) {
   $form_state['values']['field_newsletter_path'][LANGUAGE_NONE][0]['value'] = $path;
 }
 
-/**
- * Implements hook_secure_permissions().
- *
- * Adding permissions for newsletter
- */
-function cu_newsletter_secure_permissions($role) {
-  $permissions = array(
-    'anonymous user' => array(
-
-    ),
-    'authenticated user' => array(
-
-    ),
-    'administrator' => array(
-      'create newsletter content',
-      'delete any newsletter content',
-      'delete own newsletter content',
-      'edit any newsletter content',
-      'edit own newsletter content',
-      'administer newsletter vocabulary terms',
-    ),
-    'content_editor' => array(
-      'create newsletter content',
-      'delete any newsletter content',
-      'delete own newsletter content',
-      'edit any newsletter content',
-      'edit own newsletter content',
-      'administer newsletter vocabulary terms',
-    ),
-    'developer' => array(
-      'add newsletter logo',
-      'create newsletter content',
-      'delete any newsletter content',
-      'delete own newsletter content',
-      'edit any newsletter content',
-      'edit own newsletter content',
-      'administer newsletter vocabulary terms',
-    ),
-    'site_owner' => array(
-      'create newsletter content',
-      'delete any newsletter content',
-      'delete own newsletter content',
-      'edit any newsletter content',
-      'edit own newsletter content',
-      'administer newsletter vocabulary terms',
-    ),
-  );
-
-  if (isset($permissions[$role])) {
-    return $permissions[$role];
-  }
-}
-
 function cu_newsletter_design_options() {
   $options = array(
     'design-01' => 'Classic',
