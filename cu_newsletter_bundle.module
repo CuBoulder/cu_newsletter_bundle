@@ -10,6 +10,7 @@
 function cu_newsletter_bundle_secure_permissions($role) {
    $permissions = array(
     'administrator' => array(
+      'administer newsletter vocabulary terms',
       'create newsletter content',
       'delete any newsletter content',
       'delete own newsletter content',
@@ -21,6 +22,7 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'view any newsletter_list bean',
     ),
     'content_editor' => array(
+      'administer newsletter vocabulary terms',
       'create newsletter content',
       'delete any newsletter content',
       'delete own newsletter content',
@@ -32,6 +34,8 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'view any newsletter_list bean',
     ),
     'developer' => array(
+      'add newsletter logo',
+      'administer newsletter vocabulary terms',
       'create newsletter content',
       'delete any newsletter content',
       'delete own newsletter content',
@@ -52,6 +56,7 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'view any newsletter_list bean',
     ),
     'site_editor' => array(
+      'administer newsletter vocabulary terms',
       'create newsletter content',
       'delete any newsletter content',
       'delete own newsletter content',
@@ -63,6 +68,7 @@ function cu_newsletter_bundle_secure_permissions($role) {
       'view any newsletter_list bean',
     ),
     'site_owner' => array(
+      'administer newsletter vocabulary terms',
       'create newsletter content',
       'delete any newsletter content',
       'delete own newsletter content',
