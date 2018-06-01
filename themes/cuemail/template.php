@@ -42,7 +42,7 @@ function cuemail_preprocess_html(&$vars) {
 function cuemail_preprocess_node(&$vars) {
 
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
-  $url = url('node/' . $vars['nid'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => FALSE));
+  $url = url('node/' . $vars['nid'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => TRUE));
   $vars['node_url'] = $url;
   if ($vars['type'] == 'newsletter') {
     if (!empty($vars['content']['field_newsletter_intro_image'])) {
@@ -98,7 +98,7 @@ function cuemail_preprocess_node(&$vars) {
           $tag = $term->name;
           if ($term->field_category_display[LANGUAGE_NONE][0]['value'] == 'show') {
             if (!empty($term->field_category_term_page_link)) {
-              $new_tags[] = l($tag, $term->field_category_term_page_link[LANGUAGE_NONE][0]['url'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => FALSE));
+              $new_tags[] = l($tag, $term->field_category_term_page_link[LANGUAGE_NONE][0]['url'], array('absolute' => TRUE, 'alias' => TRUE, 'https' => TRUE));
             }
             else {
               $new_tags[] = $tag;
