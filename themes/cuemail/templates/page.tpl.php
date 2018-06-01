@@ -43,9 +43,8 @@
   }
   else {
     $email = $cssToInlineStyles->convert();
-    $email = str_replace('src="https://', 'src="http://', $email);
-    $email = str_replace('src="//', 'src="http://', $email);
-    $email = str_replace('href="//', 'href="http://', $email);
+    $email = str_replace('src="//', 'src="https://', $email);
+    $email = str_replace('href="//', 'href="https://', $email);
   }
 
   print $email;
