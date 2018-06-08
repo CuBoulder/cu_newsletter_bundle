@@ -89,7 +89,7 @@ function cu_newsletter_page_alter(&$page) {
  */
 function cu_newsletter_preprocess_page(&$vars) {
   if(isset($vars['node']) && $vars['node']->type == "newsletter") {
-    if ((arg(0) == 'node') && (arg(2) != 'email')) {
+    if ((arg(0) == 'node') && (arg(2) != 'email') && (arg(2) != 'revisions')) {
       if (user_access('edit any newsletter content')) {
         $vars['tabs']['#primary'][] = array(
           '#theme' => 'menu_local_task',
