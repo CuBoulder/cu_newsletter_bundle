@@ -35,26 +35,6 @@ function cu_newsletter_menu() {
 }
 
 /**
-* Implements hook_menu_alter().
-*/
-function cu_newsletter_menu_alter(&$items) {
-
-}
-
-function cu_newsletter_access($op, $node) {
-
-  if ($node->type == 'newsletter') {
-    //return TRUE;
-  }
-  if (node_access($op, $node)) {
-    return TRUE;
-  }
-  else {
-    return FALSE;
-  }
-}
-
-/**
 * For editing page nodes, uses the 'some_other_theme' theme.
 */
 function cu_newsletter_email_node_theme($node) {
