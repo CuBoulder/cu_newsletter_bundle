@@ -11,7 +11,8 @@ function cu_newsletter_menu() {
 
   $items['node/%node/email']['theme callback'] = 'cu_newsletter_email_node_theme';
   $items['node/%node/email']['theme arguments'] = array(1);
-  $items['node/%node/email']['access callback'] = TRUE;
+  $items['node/%node/email']['access callback'] = 'node_access';
+  $items['node/%node/email']['access arguments'] = array('view', 1);
   $items['node/%node/email']['title'] = t('Email Version');
 
   $items['admin/newsletter/publish/confirm/%'] = array(
@@ -31,25 +32,6 @@ function cu_newsletter_menu() {
   );
 
   return $items;
-}
-
-/**
-* Implements hook_menu_alter().
-*/
-function cu_newsletter_menu_alter(&$items) {
-
-}
-
-function cu_newsletter_access($op, $node) {
-  if ($node->type == 'newsletter') {
-    return TRUE;
-  }
-  if (node_access($op, $node)) {
-    return TRUE;
-  }
-  else {
-    return TRUE;
-  }
 }
 
 /**
@@ -89,7 +71,7 @@ function cu_newsletter_page_alter(&$page) {
  */
 function cu_newsletter_preprocess_page(&$vars) {
   if(isset($vars['node']) && $vars['node']->type == "newsletter") {
-    if ((arg(0) == 'node') && (arg(2) != 'email')) {
+    if ((arg(0) == 'node') && (arg(2) != 'email') && (arg(2) != 'revisions')) {
       if (user_access('edit any newsletter content')) {
         $vars['tabs']['#primary'][] = array(
           '#theme' => 'menu_local_task',
