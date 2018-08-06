@@ -1,4 +1,4 @@
-@cu_newsletter_bundle
+@NewsletterBundle
 Feature: Newsletter Node Type
 
  When I login to a Web Express website
