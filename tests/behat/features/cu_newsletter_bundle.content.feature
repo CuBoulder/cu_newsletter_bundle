@@ -25,18 +25,18 @@ And I go to "node/add/article"
 And I fill in "Title" with "Newsletter Article One"
 And I fill in "Body" with "Digital Arts Article One"
 And I press "Save"
-Then I should see " Article Newsletter Article One has been created"
+Then I should see "Article Newsletter Article One has been created"
 Then I go to "node/add/article"
 And I fill in "Title" with "Newsletter Article Two"
 And I fill in "Body" with "Digital Arts Article Two"
 And I press "Save"
-Then I should see " Article Newsletter Article Two has been created"
+Then I should see "Article Newsletter Article Two has been created"
 
 # 3) A SIMPLE NEWSLETTER CAN BE CREATED
 Scenario: Node Functionality - A very simple Newsletter node can be created 
 Given I am logged in as a user with the "site_owner" role
 And I go to "node/add/newsletter "
-And I fill in "edit-title" with "Sample Newsletter"
+And I fill in "Newsletter Title" with "Sample Newsletter"
 And I select "Digital Arts Magazine" from "edit-field-newsletter-type-und"
 And I fill in "Body" with "This is the introductory section of the newsletter."
 When I press "edit-submit"
