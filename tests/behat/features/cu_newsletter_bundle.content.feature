@@ -5,20 +5,33 @@ As an authenticated user
 I should be able to create, edit, and delete Newsletters
 
 # 1) CREATE NEWSLETTER TAXONOMY 
-# 2) CREATE SUPPORTING ARTICLES FOR NEWSLETTER
-# 3) A VERY SIMPLE NEWSLETTER CAN BE CREATED
+# 2) A VERY SIMPLE NEWSLETTER CAN BE CREATED
+# 3) CREATE SUPPORTING ARTICLES FOR NEWSLETTER
 # 4) FLESH OUT NEWSLETTER WITH MORE CONTENT
 
 # 1) CREATE NEWSLETTER TAXONOMY
-Scenario: A simple Newsletter Taxonomy can be created
+Scenario: Bundle functionality - Create the Newsletter Taxonomy
 Given I am logged in as a user with the "site_owner" role
 And I am on "admin/structure/taxonomy/newsletter/add"
 And I fill in "Name" with "Digital Arts Magazine"
-And I fill in "Newsletter Path" with " digitalarts"
+And I fill in "Newsletter Path" with "digitalarts"
 And I press "Save"
-Then I should see " Created new term Digital Arts Magazine"
+Then I should see "Created new term Digital Arts Magazine"
 
-# 2) CREATE SUPPORTING ARTICLES FOR NEWSLETTER
+# 2) A VERY SIMPLE NEWSLETTER CAN BE CREATED
+Scenario: Node Functionality - A very simple Newsletter node can be created 
+Given I am logged in as a user with the "site_owner" role
+And I go to "node/add/newsletter"
+And I fill in "edit-field-newsletter-title-und-0-value" with "Sample Newsletter"
+And I select "Digital Arts Magazine" from "edit-field-newsletter-type-und"
+And I fill in "Body" with "This is the introductory section of the newsletter."
+When I press "edit-submit"
+Then I should see "Newsletter Digital Arts Magazine - Sample Newsletter has been created."
+And I press "edit-publish"
+Then I should be on "/newsletter/digitalarts/sample-newsletter"
+And I should see "Digital Arts Magazine - Sample Newsletter and all attached articles are now published"
+
+# 3) CREATE SUPPORTING ARTICLES FOR NEWSLETTER
 Scenario: Create two articles for use in Newsletter 
 Given I am logged in as a user with the "site_owner" role
 And I go to "node/add/article"
@@ -32,20 +45,7 @@ And I fill in "Body" with "Second article about Digital Arts"
 And I press "Save"
 Then I should see "Article Newsletter Article Two has been created"
 
-# 3) A VERY SIMPLE NEWSLETTER CAN BE CREATED
-Scenario: Node Functionality - A very simple Newsletter node can be created 
-Given I am logged in as a user with the "site_owner" role
-And I go to "node/add/newsletter"
-And I fill in "edit-field-newsletter-title-und-0-value" with "Sample Newsletter"
-And I select "Digital Arts Magazine" from "edit-field-newsletter-type-und"
-And I fill in "Body" with "This is the introductory section of the newsletter."
-When I press "edit-submit"
-Then I should see "Newsletter Digital Arts Magazine - Sample Newsletter has been created."
-And I press "edit-publish"
-Then I should be on "/newsletter/digitalarts/sample-newsletter"
-And I should see "Digital Arts Magazine - Sample Newsletter and all attached articles are now published"
-
-# 4) THE NEWSLETTER CAN BE REVISED 
+# 4) FLESH OUT NEWSLETTER WITH MORE CONTENT
 Scenario: Node functionality - Flesh out newsletter with more content
 Given I am logged in as a user with the "site_owner" role
 And I am on "newsletter/digitalarts/sample-newsletter"
