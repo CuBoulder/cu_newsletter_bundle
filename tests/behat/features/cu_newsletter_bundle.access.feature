@@ -1,7 +1,7 @@
 @cu_newsletter_bundle
-Feature: Class Notes Node Type
+Feature: Newsletter Node Type
 
-        When I login to a Web Express website
+ When I login to a Web Express website
     As an authenticated user with the right permission
     I should be able to create a newsletter
 
@@ -16,6 +16,7 @@ Feature: Class Notes Node Type
             | edit_my_content | "Access Denied"     |
             | edit_only       | "Access Denied"     |
             | content_editor  | "Create Newsletter" |
+            | site_editor     | "Create Newsletter" |
             | site_owner      | "Create Newsletter" |
             | administrator   | "Create Newsletter" |
             | developer       | "Create Newsletter" |
