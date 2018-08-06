@@ -55,7 +55,6 @@ And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-cont
 And I press "Add another item"
 And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-content-und-1-field-newsletter-articles-und-0-target-id" with "Newsletter Article Two"
 And I fill in "edit-field-newsletter-text-block-und-0-field-newsletter-block-title-und-0-value" with "A Text Block of Information"
-And I fill in "edit-field-newsletter-text-block-und-0-field-newsletter-block-body" with "edit-field-newsletter-text-block-und-0-field-newsletter-block-title-und-0-value"
 And I press "edit-submit"
 And I press "edit-publish"
 Then I should see "Digital Arts Magazine - Sample Newsletter and all attached articles are now published"
