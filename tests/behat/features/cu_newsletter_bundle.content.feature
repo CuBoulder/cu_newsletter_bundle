@@ -49,6 +49,7 @@ And I should see "Digital Arts Magazine - Sample Newsletter and all attached art
 Scenario: Node functionality - Create Revision of Newsletter
 Given I am logged in as a user with the "site_owner" role
 And I am on "newsletter/digitalarts/sample-newsletter"
+And I follow "Edit"
 And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-title-und-0-value" with "Important Articles"
 And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-content-und-0-field-newsletter-articles-und-0-target-id" with "Newsletter Article One"
 And I press "Add another item"
