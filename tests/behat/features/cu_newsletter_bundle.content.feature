@@ -6,8 +6,8 @@ I should be able to create, edit, and delete Newsletters
 
 # 1) CREATE NEWSLETTER TAXONOMY 
 # 2) CREATE SUPPORTING ARTICLES FOR NEWSLETTER
-# 3) A SIMPLE NEWSLETTER CAN BE CREATED
-# 4) THE NEWSLETTER CAN BE REVISED 
+# 3) A VERY SIMPLE NEWSLETTER CAN BE CREATED
+# 4) FLESH OUT NEWSLETTER WITH MORE CONTENT 
 
 # 1) CREATE NEWSLETTER TAXONOMY
 Scenario: A simple Newsletter Taxonomy can be created
@@ -23,16 +23,16 @@ Scenario: Create two articles for use in Newsletter
 Given I am logged in as a user with the "site_owner" role
 And I go to "node/add/article"
 And I fill in "Title" with "Newsletter Article One"
-And I fill in "Body" with "Digital Arts Article One"
+And I fill in "Body" with "First article about Digital Arts"
 And I press "Save"
 Then I should see "Article Newsletter Article One has been created"
 Then I go to "node/add/article"
 And I fill in "Title" with "Newsletter Article Two"
-And I fill in "Body" with "Digital Arts Article Two"
+And I fill in "Body" with "Second article about Digital Arts"
 And I press "Save"
 Then I should see "Article Newsletter Article Two has been created"
 
-# 3) A SIMPLE NEWSLETTER CAN BE CREATED
+# 3) A VERY SIMPLE NEWSLETTER CAN BE CREATED
 Scenario: Node Functionality - A very simple Newsletter node can be created 
 Given I am logged in as a user with the "site_owner" role
 And I go to "node/add/newsletter"
@@ -46,7 +46,7 @@ Then I should be on "/newsletter/digitalarts/sample-newsletter"
 And I should see "Digital Arts Magazine - Sample Newsletter and all attached articles are now published"
 
 # 4) THE NEWSLETTER CAN BE REVISED 
-Scenario: Node functionality - Create Revision of Newsletter
+Scenario: Node functionality - Flesh out newsletter with more content
 Given I am logged in as a user with the "site_owner" role
 And I am on "newsletter/digitalarts/sample-newsletter"
 And I follow "Edit"
@@ -54,7 +54,13 @@ And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-titl
 And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-content-und-0-field-newsletter-articles-und-0-target-id" with "Newsletter Article One"
 And I press "Add another item"
 And I fill in "edit-field-newsletter-section-und-0-field-newsletter-section-content-und-1-field-newsletter-articles-und-0-target-id" with "Newsletter Article Two"
+And I fill in "edit-field-newsletter-text-block-und-0-field-newsletter-block-title-und-0-value" with "A Text Block of Information"
+And I fill in "edit-field-newsletter-text-block-und-0-field-newsletter-block-body" with "edit-field-newsletter-text-block-und-0-field-newsletter-block-title-und-0-value"
 And I press "edit-submit"
 And I press "edit-publish"
 Then I should see "Digital Arts Magazine - Sample Newsletter and all attached articles are now published"
+And I should see "Newsletter Article One"
+And I should see "Newsletter Article Two"
+And I should see "A Text Block of Information"
+
 
